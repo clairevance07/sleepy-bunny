@@ -1,4 +1,4 @@
-# Sleepy Bunny
+# Sleepy Bunny 🐰
 
 [My Notes](notes.md)
 
@@ -11,18 +11,18 @@ Sleepy Bunny is an adorable sleep log app where you improve the mood and energy 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
 - [ ] Proper use of Markdown
-- [ ] A concise and compelling elevator pitch
+- [x] A concise and compelling elevator pitch
 - [ ] Description of key features
 - [ ] Description of how you will use each technology
-- [ ] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
+- [x] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
 
 ### Elevator pitch
 
-If there's one thing students are always complaining about, it's how exhausted they are. However, they never seem to do anything to fix it. Sleepy Bunny instantly brings awareness to how much sleep you're getting because your bunny reflects how you feel inside; if you slept 4 hours last night, you can bet your bunny will be nearly falling asleep.
+If there's one thing teenagers and young adults frequently complain about, it's how exhausted they are. However, they usually don't take time to fix their sleep schedules. Sleepy Bunny instantly brings awareness to how much sleep you're getting. Not only can you set a sleep goal, log your hours, and share your progress with friends, but your bunny mirrors the effects of your sleep duration; if you slept four hours last night, you can bet your bunny will be nearly falling asleep. This fluffy friend is exactly what you need to get your sleep schedule back on track.
 
 ### Design
 
-![Design image](placeholder.png)
+![Design image](overview1.jpg)(overview2.jpg)
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
