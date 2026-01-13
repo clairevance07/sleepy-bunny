@@ -12,7 +12,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 - [ ] Proper use of Markdown
 - [x] A concise and compelling elevator pitch
-- [ ] Description of key features
+- [x] Description of key features
 - [ ] Description of how you will use each technology
 - [x] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
 
@@ -22,22 +22,16 @@ If there's one thing teenagers and young adults frequently complain about, it's 
 
 ### Design
 
-![Design image](overview1.jpg)(overview2.jpg)
+![Design image 1](overview1.jpg)
+![Design image 2](overview2.jpg)
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-```mermaid
-sequenceDiagram
-    actor You
-    actor Website
-    You->>Website: Replace this with your design
-```
+The app will consist of three main parts: the login, track, and friends pages. The login page is where a user can create an account or log in to an existing account so that their data is saved. The tracking page is the main page of the application, which includes the user's bunny, who will be animated based on mood, and two popup windows: goal and progress. The goal popup will allow the user to see and edit the window they want to be asleep during and how many hours of sleep they want to get per night. The progress window will show a calendar with the days that the user hit their sleep goal shaded in. On the friends page, the user can see the progress of the friends they've added and send praise, and they can also add new friends with the friend's username.
 
 ### Key features
 
-- Describe your key feature
-- Describe your key feature
-- Describe your key feature
+- An adorable pet rabbit who greets you immediately after you sign in. This virtual pet reflects your mood based on your sleep schedule; he'll be exhausted if you didn't sleep well and energetic if you hit your goals.
+- Progress monitoring. It's easy to see how consistent you've been at a glance through the shaded calendar feature.
+- Friends! Staying on track is always easier with friends, and Sleepy Bunny makes it easy for you to check in on your friends and send them encouraging messages.
 
 ### Technologies
 
