@@ -2,18 +2,16 @@
 
 [My Notes](notes.md)
 
-
-
 ## 🚀 Specification Deliverable
 
 Sleepy Bunny is an adorable sleep log app where you improve the mood and energy of your virtual pet rabbit by achieving your sleep goals. 
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] Proper use of Markdown
+- [x] Proper use of Markdown
 - [x] A concise and compelling elevator pitch
 - [x] Description of key features
-- [ ] Description of how you will use each technology
+- [x] Description of how you will use each technology
 - [x] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
 
 ### Elevator pitch
@@ -25,7 +23,7 @@ If there's one thing teenagers and young adults frequently complain about, it's 
 ![Design image 1](overview1.jpg)
 ![Design image 2](overview2.jpg)
 
-The app will consist of three main parts: the login, track, and friends pages. The login page is where a user can create an account or log in to an existing account so that their data is saved. The tracking page is the main page of the application, which includes the user's bunny, who will be animated based on mood, and two popup windows: goal and progress. The goal popup will allow the user to see and edit the window they want to be asleep during and how many hours of sleep they want to get per night. The progress window will show a calendar with the days that the user hit their sleep goal shaded in. On the friends page, the user can see the progress of the friends they've added and send praise, and they can also add new friends with the friend's username.
+The app will consist of three main parts: the login, track, and friends pages. The login page is where a user can create an account or log in to an existing account so that their data is saved. The tracking page is the main page of the application, which includes the user's bunny, who will be animated based on mood, and two popup windows: goal and progress. The goal popup will allow the user to see and edit their ideal sleep window and how many hours of sleep they want to get per night. The progress window will show a calendar with the days that the user hit their sleep goal shaded in. On the friends page, the user can see the progress of the friends they've added and send praise, and they can also add new friends with the friend's username.
 
 ### Key features
 
@@ -37,12 +35,12 @@ The app will consist of three main parts: the login, track, and friends pages. T
 
 I am going to use the required technologies in the following ways.
 
-- **HTML** - Description here
-- **CSS** - Description here
-- **React** - Description here
-- **Service** - Description here
-- **DB/Login** - Description here
-- **WebSocket** - Description here
+- **HTML** - Login and register controls, tracking page, goals and progress pop-ups and controls, friends page, friends' progress details, adding a friend controls.
+- **CSS** - Pastel color scheme, highlighting when hovering over buttons, shading / animation with popups and friend celebrations.
+- **React** - Routing between tabs and popups, updating bunny status and progress calendar based on sleep data logged.
+- **Service** - Store user progress and goals, login and logout details. Third party call to generate a song of the day. 
+- **DB/Login** - Stores user progress and goals.
+- **WebSocket** - Share user's goal progress and send reactions back to the user. 
 
 ## 🚀 AWS deliverable
 
