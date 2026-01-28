@@ -52,12 +52,13 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
+- [x] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
 - [x] **HTML pages** - I created HTML pages for all of the different tabs of my app: Login (index), weather, track, goal, leaderboard, and progress. 
-- [x] **Proper HTML element usage** - I used BODY, NAV, MAIN, HEADER, and FOOTER tags, as well as tables, div, and span. 
-- [x] **Links** - I created links connecting my pages. 
-- [x] **Text** - I added text on each page, including headers, what the bunny will say, progress chart placeholder, etc. 
+- [x] **Proper HTML element usage** - I used BODY, NAV, MAIN, HEADER, and FOOTER tags, as well as tables, div, paragraph, a tags, and span. 
+- [x] **Links** - All pages contain a nav bar with links to the login, track, weather, and leaderboard pages. Track page has additional links to the progress and goal pages which have links that go back to the track page. 
+- [x] **Text** - I added text on each page, including headers, what the bunny will say based on how well you sleep, progress chart placeholder, weather chart placeholder, headers and descriptors. 
 - [x] **3rd party API placeholder** - This appears on my weather page where the app will call to a weather API.
-- [x] **Images** - I included a logo image in the browser tab, as well as a placeholder image for the bunny and the weather. 
+- [x] **Images** - I included a logo image in the browser tab, as well as a placeholder image for the bunny mascot on the track page and the weather banner on the weather page. 
 - [x] **Login placeholder** - I have a login screen with a username and password field, and the program greets the user by username on the track page. 
 - [x] **DB data placeholder** - I have a page for both the user's progress/streak, as well as a page for the user's goal. 
 - [x] **WebSocket placeholder** - There is a leaderboard tab that will show which users have the highest streak.
