@@ -1,6 +1,6 @@
 # CS 260 Notes
 
-[My startup - Sleepy Bunny](https://simon.cs260.click)
+[My startup - Sleepy Bunny](https://sleepybunny.click)
 
 ## Helpful links
 
