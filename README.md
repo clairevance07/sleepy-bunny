@@ -38,9 +38,9 @@ I am going to use the required technologies in the following ways.
 - **HTML** - Login and register controls, tracking page, goals and progress pop-ups and controls, friends page, friends' progress details, adding a friend controls.
 - **CSS** - Pastel color scheme, highlighting when hovering over buttons, shading / animation with popups and friend celebrations.
 - **React** - Routing between tabs and popups, updating bunny status and progress calendar based on sleep data logged.
-- **Service** - Store user progress and goals, login and logout details. Third party call to generate a song of the day. 
+- **Service** - Store user progress and goals, login and logout details. Third party call to generate the weather of the week. 
 - **DB/Login** - Stores user progress and goals.
-- **WebSocket** - Share user's goal progress and send reactions back to the user. 
+- **WebSocket** - Share user's streak on a leaderboard. 
 
 ## 🚀 AWS deliverable
 
@@ -52,15 +52,15 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **HTML pages** - I did not complete this part of the deliverable.
-- [ ] **Proper HTML element usage** - I did not complete this part of the deliverable.
-- [ ] **Links** - I did not complete this part of the deliverable.
-- [ ] **Text** - I did not complete this part of the deliverable.
-- [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
-- [ ] **Images** - I did not complete this part of the deliverable.
-- [ ] **Login placeholder** - I did not complete this part of the deliverable.
-- [ ] **DB data placeholder** - I did not complete this part of the deliverable.
-- [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
+- [x] **HTML pages** - I created HTML pages for all of the different tabs of my app: Login (index), weather, track, goal, leaderboard, and progress. 
+- [x] **Proper HTML element usage** - I used BODY, NAV, MAIN, HEADER, and FOOTER tags, as well as tables, div, and span. 
+- [x] **Links** - I created links connecting my pages. 
+- [x] **Text** - I added text on each page, including headers, what the bunny will say, progress chart placeholder, etc. 
+- [x] **3rd party API placeholder** - This appears on my weather page where the app will call to a weather API.
+- [x] **Images** - I included a logo image in the browser tab, as well as a placeholder image for the bunny and the weather. 
+- [x] **Login placeholder** - I have a login screen with a username and password field, and the program greets the user by username on the track page. 
+- [x] **DB data placeholder** - I have a page for both the user's progress/streak, as well as a page for the user's goal. 
+- [x] **WebSocket placeholder** - There is a leaderboard tab that will show which users have the highest streak.
 
 ## 🚀 CSS deliverable
 
