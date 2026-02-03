@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="index.css" />
 </head>
   <body>
-    <header>
+    <header class="container-fluid">
         <nav class="navbar fixed-top">
             <h1 class="navbar-brand">Sleepy Bunny</h1>
             <menu class="navbar-nav">
@@ -31,29 +31,29 @@
     <hr />
     </header>
 
-    <main>
+    <main class="container-fluid text-center">
         <h1>Welcome to Sleepy Bunny!</h1>
         <form method="get" action="track.html">
-            <div>
-                <span>Username</span>
-                <input type="text" placeholder="your@email.com"/>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Username</span>
+                <input class="form-control" type="text" placeholder="your@email.com"/>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Password</span>
+                <input class="form-control" type="text" placeholder="password"/>
             </div>
             <div>
-                <span>Password</span>
-                <input type="text" placeholder="password"/>
-            </div>
-            <div>
-                <button type="submit">Login</button>
-                <button type="submit">Create</button>
+                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="submit" class="btn btn-secondary">Create</button>
             </div>
         </form>
     </main>
   </body>
   
-  <footer>
+  <footer class="container-fluid">
     <hr />
     <span class="text-reset">Claire Vance</span>
     <br />
-    <a href="https://github.com/clairevance07/sleepy-bunny">GitHub</a>
+    <a class="text-reset" href="https://github.com/clairevance07/sleepy-bunny">GitHub</a>
   </footer>
 </html>

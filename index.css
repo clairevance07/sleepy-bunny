@@ -42,3 +42,21 @@ menu {
 menu .nav-item {
   padding: 0 0.3em;
 }
+
+.btn-primary {
+  --bs-btn-bg: #beb1f0;
+  --bs-btn-border-color: #beb1f0;
+  --bs-btn-hover-bg: #7e62bf;
+  --bs-btn-hover-border-color: #7e62bf;
+  --bs-btn-color: #2E2A3B;
+  margin: 0 0.5em;
+}
+
+.btn-secondary {
+  --bs-btn-bg: #a7f3d0;
+  --bs-btn-border-color: #a7f3d0;
+  --bs-btn-hover-bg: #7fd2ab;
+  --bs-btn-hover-border-color: #7fd2ab;
+  --bs-btn-color: #2E2A3B;
+  margin: 0 0.5em;
+}
