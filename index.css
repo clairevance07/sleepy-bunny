@@ -13,7 +13,7 @@ header {
 }
 
 main {
-  flex: 1 calc(100vh - 110px);
+  flex: 1 calc(100vh - 120px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -93,4 +93,17 @@ footer a {
   background-color: #7e62bf;
   color:#eae6fc;
   padding: 0.5em; 
+}
+
+.navbar-brand {
+  padding-left: 1em;
+  margin: 0em;
+  font-family: "Copperplate", "Copperplate Gothic Light", serif;
+}
+
+.navbar-nav {
+  justify-content: end;
+  align-items: center;
+  padding-inline-end: 1em;
+  margin-top: 0em;
 }
