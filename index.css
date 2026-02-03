@@ -60,6 +60,11 @@ menu .nav-item {
   margin: 0 0.5em;
 }
 
+.input-group-text {
+  color: #2E2A3B;
+  background-color: #eae6fc;
+}
+
 .navbar-light {
   background-color: #beb1f0;
 }
@@ -78,4 +83,14 @@ h1 {
   main {
     flex: 1 100vh;
   }
+}
+
+footer a {
+  float: right;
+}
+
+.footer {
+  background-color: #7e62bf;
+  color:#eae6fc;
+  padding: 0.5em; 
 }
