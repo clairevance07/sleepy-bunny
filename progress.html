@@ -5,20 +5,29 @@
     <!-- Tell browsers not to scale the viewport automatically -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sleepy Bunny</title>
-    <link rel="icon" href="bunny.png"/>
+    <link rel="icon" href="rabbit.png"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="progress.css" />
   </head>
   <body>
-    <header>
-        <h1>Sleepy Bunny</h1>
-        <nav>
-        <ul>
-            <li><a href="index.html">Login</a></li>
-            <li><a href="track.html">Track</a></li>
-            <li><a href="friends.html">Friends</a></li>
-            <li><a href="weather.html">Weather</a></li>
-        </ul>
+    <header class="container-fluid">
+        <nav class="navbar fixed-top navbar-light">
+            <h1 class="navbar-brand">Sleepy Bunny</h1>
+            <menu class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" href="index.html">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="track.html">Track</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="friends.html">Friends</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="weather.html">Weather</a>
+                </li>
+            </ul></menu>
     </nav>
-    <hr />
     </header>
 
     <main>
@@ -76,10 +85,10 @@
         <div><b>Streak: 1</b></div>
     </main>
   </body>
-  <footer>
-    <hr />
-    <span class="text-reset">Claire Vance</span>
-    <br />
-    <a href="https://github.com/clairevance07/sleepy-bunny">GitHub</a>
+  <footer class="footer">
+    <div class="container-fluid">
+        <span class="text-reset">Claire Vance</span>
+        <a class="text-reset" href="https://github.com/clairevance07/sleepy-bunny">GitHub</a>
+    </div>
   </footer>
 </html>
