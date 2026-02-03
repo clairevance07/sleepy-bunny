@@ -3,12 +3,14 @@ body {
   flex-direction: column;
   min-width: 375px;
   color: #2E2A3B;
+  background-color: #faf7fc;
 }
 
 header {
   flex: 0 80px;
   color: #2E2A3B;
-  font-family: "Avantgarde", sans-serif;
+  font-family: "Inter", sans-serif;
+  background-color: #beb1f0;
 }
 
 main {
@@ -18,13 +20,14 @@ main {
   align-items: center;
   justify-content: space-around;
   color: #2E2A3B;
-  font-family: "Avantgarde", sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 footer {
   flex: 0 30px;
   color: #2E2A3B;
-  font-family: "Avantgarde", sans-serif;
+  font-family: "Inter", sans-serif;
+  background-color: #7e62bf;
 }
 
 menu {
@@ -33,6 +36,9 @@ menu {
   flex-direction: row !important;
   list-style: none;
   color: #2E2A3B;
-  font-family: "Avantgarde", sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
+menu .nav-item {
+  padding: 0 0.3em;
+}
