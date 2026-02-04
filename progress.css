@@ -92,6 +92,8 @@ footer a {
   aspect-ratio: 1 / 1;
   align-items: center;
   justify-content: center;
+  text-emphasis: bold;
+  font-weight: bold;
 }
 
 .card:nth-child(odd) {
@@ -99,7 +101,14 @@ footer a {
 }
 
 .card:nth-child(even) {
-  aspect-ratio: 1 / 1;
   background:#a7f3d0;
 }
 
+.cal-headers {
+  display: flex;
+  align-items: row;
+  text-align: center;
+  gap: 0.7em;
+  font-weight: bold;
+  padding-bottom: 1em;
+}
