@@ -80,3 +80,33 @@ footer a {
   padding-inline-end: 1em;
   margin-top: 0em;
 }
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: 1em;
+  width: 100%;
+}
+
+.card {
+  aspect-ratio: 1 / 1;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  background:#7e62bf
+}
+
+.day-header {
+  text-align: center;
+  justify-content: center;
+  grid-template-rows: 10px;
+}
+
+.weather-title {
+  font-size: 2.5em;
+  padding: 1em;
+}
+
+#temp {
+  font-weight: bold;
+}
