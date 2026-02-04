@@ -83,7 +83,23 @@ footer a {
 
 .container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-auto-rows: 300px;
+  grid-template-columns: repeat(7, 1fr);
   grid-gap: 1em;
+  width: 100%;
 }
+
+.card {
+  aspect-ratio: 1 / 1;
+  align-items: center;
+  justify-content: center;
+}
+
+.card:nth-child(odd) {
+  background:#beb1f0;
+}
+
+.card:nth-child(even) {
+  aspect-ratio: 1 / 1;
+  background:#a7f3d0;
+}
+
