@@ -147,3 +147,150 @@ footer a {
   width: 10em;
   align-self: center;
 }
+
+.bunny {
+  position: relative;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  top: 2em;
+  left: 2em;
+  aspect-ratio: 1 / 1;
+  width: 40%;   
+  max-width: 300px;
+  min-width: 150px;
+  margin: 0.25em auto;
+}
+
+#head {
+  position: absolute;
+  width: 60%;
+  height: 50%;
+  background-color: #beb1f0;
+  border-radius: 50%;
+}
+
+#ear1 {
+  position: absolute;
+  top: -20%;
+  width: 15%;
+  height: 30%;
+  background: #beb1f0;
+  border-radius: 50% 50% 0 0;
+  left: 10%; 
+  transform: rotate(-10deg);
+}
+
+#ear2 {
+  position: absolute;
+  top: -20%;
+  width: 15%;
+  height: 30%;
+  background: #beb1f0;
+  border-radius: 50% 50% 0 0;
+  left: 32%; 
+  transform: rotate(10deg);
+}
+
+#nose {
+  position: absolute;
+  background:#2E2A3B;
+  border-radius: 50%;
+  left: 24%;
+  top: 30%;
+  width: 10%; 
+  height: 5%;
+}
+
+#eye1 {
+  position: absolute;
+  background:#2E2A3B;
+  border-radius: 50%;
+  left: 40%;
+  top: 15%;
+  width: 10%; 
+  height: 10%;
+}
+
+#eye1 {
+  position: absolute;
+  background:#2E2A3B;
+  border-radius: 50%;
+  left: 35%;
+  top: 20%;
+  width: 5%; 
+  height: 5%;
+}
+
+#eye2 {
+  position: absolute;
+  background:#2E2A3B;
+  border-radius: 50%;
+  left: 15%;
+  top: 20%;
+  width: 5%; 
+  height: 5%;
+}
+
+.sidebar {
+  display: flex;
+  justify-self: end;
+  justify-items: center;
+  align-items: center;
+  align-self: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 50vh;
+  width: 40%;
+  margin: 0.5em;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#greeting {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  margin-top: 5vh;
+  font-size: 1.5em;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #7fd2ab;
+  font-weight: bolder;
+}
+
+#progress {
+  height: 25%;
+  width: fill;
+  margin-bottom: 10%;
+  display: grid;
+  align-content: center;
+  background-color:#7e62bf;
+  color:#eae6fc;
+  width: 100%;
+  max-width: 30vh;
+  border-radius: 10%;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+#goal {
+  height: 25%;
+  margin-top: 10%;
+  display: grid;
+  align-content: center;
+  background-color:#7e62bf;
+  color:#eae6fc;
+  width: 100%;
+  max-width: 30vh;
+  border-radius: 10%;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+#progress:hover {
+  background-color:#beb1f0;
+}
+
+#goal:hover {
+  background-color:#beb1f0;
+}
