@@ -15,8 +15,8 @@ header {
 main {
   flex: 1 calc(100vh - 120px);
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   color: #2E2A3B;
   font-family: "Inter", sans-serif;
@@ -122,4 +122,28 @@ footer a {
 .streak {
   padding-bottom: 0.75em;
   font-size: 0.75em;
+}
+
+.add-friend {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.friends {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+#field {
+  margin: 0.75em;
+  width: 15em;
+  text-align: center;
+}
+
+#add {
+  width: 10em;
+  align-self: center;
 }
