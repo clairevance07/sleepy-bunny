@@ -127,18 +127,36 @@ footer a {
 #progress {
   height: 25%;
   width: fill;
-  margin-bottom: 20%;
+  margin-bottom: 10%;
   display: grid;
   align-content: center;
   background-color:#7e62bf;
-  color:#eae6fc
+  color:#eae6fc;
+  width: 100%;
+  max-width: 20vh;
+  border-radius: 10%;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 #goal {
   height: 25%;
-  margin-top: 20%;
+  margin-top: 10%;
   display: grid;
   align-content: center;
   background-color:#7e62bf;
+  color:#eae6fc;
+  width: 100%;
+  max-width: 20vh;
+  border-radius: 10%;
+  text-decoration: none;
+  font-weight: bold;
+}
 
+#progress:hover {
+  background-color:#beb1f0;
+}
+
+#goal:hover {
+  background-color:#beb1f0;
 }
