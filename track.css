@@ -85,9 +85,9 @@ footer a {
   position: relative;
   display: block;
   justify-content: center;
-  flex-direction: column;
   align-items: center;
   width: 15em;
+  top: 6em;
   margin: 0.5em;
   aspect-ratio: 1 / 1;
 }
