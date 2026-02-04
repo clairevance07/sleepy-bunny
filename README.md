@@ -67,12 +67,12 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Visually appealing colors and layout. No overflowing elements.** - I did not complete this part of the deliverable.
-- [ ] **Use of a CSS framework** - I did not complete this part of the deliverable.
-- [ ] **All visual elements styled using CSS** - I did not complete this part of the deliverable.
-- [ ] **Responsive to window resizing using flexbox and/or grid display** - I did not complete this part of the deliverable.
-- [ ] **Use of a imported font** - I did not complete this part of the deliverable.
-- [ ] **Use of different types of selectors including element, class, ID, and pseudo selectors** - I did not complete this part of the deliverable.
+- [x] **Visually appealing colors and layout. No overflowing elements.** - All of my elements fit within the page. I have a visually appealing color pallette with shades of purple and a mint green accent.
+- [x] **Use of a CSS framework** - I used Bootstrap for button and field elements.
+- [x] **All visual elements styled using CSS** - Everything on my page is styled with CSS, including my bunny avatars. All fonts, sizes, and colors are styled with CSS.
+- [x] **Responsive to window resizing using flexbox and/or grid display** - I used both flexbox and grid display. Grid display for my streak calendar and weather, and flexbox for just about every other element.
+- [x] **Use of a imported font** - I used "Copperplate", "Copperplate Gothic Light", serif for my logo font in the top left corner. All other text is "Inter", sans-serif.
+- [x] **Use of different types of selectors including element, class, ID, and pseudo selectors** - I used many different types of selectors. I set overall rules for my elements and then used class and ID tags to specify things. I also used pseudo selectors to enable hover features. 
 
 ## 🚀 React part 1: Routing deliverable
 
