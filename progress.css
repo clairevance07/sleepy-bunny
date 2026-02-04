@@ -92,7 +92,6 @@ footer a {
   aspect-ratio: 1 / 1;
   align-items: center;
   justify-content: center;
-  text-emphasis: bold;
   font-weight: bold;
 }
 
@@ -102,15 +101,6 @@ footer a {
 
 .card:nth-child(even) {
   background:#a7f3d0;
-}
-
-.cal-headers {
-  display: flex;
-  align-items: row;
-  text-align: center;
-  gap: 2vw;
-  font-weight: bold;
-  padding-bottom: 1em;
 }
 
 #streak {
@@ -134,4 +124,11 @@ footer a {
 
 #exit:hover {
   filter: drop-shadow(0 0 8px #7e62bf);
+}
+
+.day-header {
+  text-align: center;
+  justify-content: center;
+  grid-template-rows: 10px;
+  font-weight: bold;
 }
