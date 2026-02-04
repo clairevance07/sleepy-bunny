@@ -14,10 +14,6 @@ header {
 
 main {
   flex: 1 calc(100vh - 120px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   color: #2E2A3B;
   font-family: "Inter", sans-serif;
 }
@@ -79,4 +75,43 @@ footer a {
   align-items: center;
   padding-inline-end: 1em;
   margin-top: 0em;
+}
+
+#head {
+  width: 2em;
+  height: 1em;
+  background-color: #beb1f0;
+  border-radius: 1em;
+}
+
+.page-content {
+  display: flex;
+}
+
+.bunny {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  width: 70%;
+  margin: 0.5em;
+}
+
+.sidebar {
+  display: flex;
+  justify-self: end;
+  align-self: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  width: 30%;
+  margin: 0.5em;
+}
+
+#greeting {
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
 }
