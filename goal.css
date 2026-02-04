@@ -99,5 +99,26 @@ footer a {
 }
 
 #overview {
-  padding-bottom: 0.5em;
+  padding-bottom: 0.2em;
+  font-size: 1.5em;
+}
+
+.form-control {
+  width: 6em;
+  margin: 2em;
+}
+
+.information {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-primary {
+  --bs-btn-bg: #a7f3d0;
+  --bs-btn-border-color: #a7f3d0;
+  --bs-btn-hover-bg: #7fd2ab;
+  --bs-btn-hover-border-color: #7fd2ab;
+  --bs-btn-color: #2E2A3B;
+  margin: 0 0.5em;
 }
