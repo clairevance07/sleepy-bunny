@@ -108,7 +108,30 @@ footer a {
   display: flex;
   align-items: row;
   text-align: center;
-  gap: 0.7em;
+  gap: 2vw;
   font-weight: bold;
   padding-bottom: 1em;
+}
+
+#streak {
+  text-align: center;
+  padding-top: 2em;
+  font-size: 1.2em;
+  padding-bottom: 2em;
+}
+
+#overview {
+  padding-bottom: 0.5em;
+  font-size: 3em;
+}
+
+#exit {
+  text-decoration: none;
+  align-self: start;
+  padding-left: 1em;
+  font-size: 2em;
+}
+
+#exit:hover {
+  filter: drop-shadow(0 0 8px #7e62bf);
 }
