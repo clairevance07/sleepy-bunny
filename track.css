@@ -86,10 +86,12 @@ footer a {
   display: block;
   justify-content: center;
   align-items: center;
-  width: 15em;
   top: 6em;
-  margin: 0.5em;
   aspect-ratio: 1 / 1;
+  width: 40%;   
+  max-width: 300px;
+  min-width: 150px;
+  margin: 2em auto;
 }
 
 #head {
