@@ -1,9 +1,16 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
+import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
+import { Friends } from './friends/friends';
+import { Goal } from './goal/goal';
+import { Login } from './login/login';
+import { Progress } from './progress/progress';
+import { Track } from './track/track';
+import { Weather } from './weather/weather';
 
 export default function App() {
-  return (
+  return ( <BrowserRouter>
     <div>
     <header className="container-fluid">
         <nav className="navbar fixed-top navbar-light">
@@ -36,5 +43,6 @@ export default function App() {
         </div>
     </footer>
   </div>
+  </BrowserRouter>
   );
 }
