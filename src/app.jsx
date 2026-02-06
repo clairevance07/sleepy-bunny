@@ -17,24 +17,30 @@ export default function App() {
             <h1 className="navbar-brand">Sleepy Bunny</h1>
             <menu className="navbar-nav">
                 <li className="nav-item">
-                    <a className="nav-link active" href="index.html">Login</a>
+                    <NavLink className="nav-link active" to="login">Login</NavLink>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link active" href="track.html">Track</a>
+                    <NavLink className="nav-link active" to="track">Track</NavLink>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link active" href="friends.html">Friends</a>
+                    <NavLink className="nav-link active" to="friends">Friends</NavLink>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link active" href="weather.html">Weather</a>
+                    <NavLink className="nav-link active" to="weather">Weather</NavLink>
                 </li>
             </menu>
     </nav>
     </header>
 
-    <main className="container-fluid text-center">
-        <h1>stuff.</h1>
-    </main>
+    <Routes>
+        <Route path='/' element={<Login />} exact />
+        <Route path='/track' element={<Track />} />
+        <Route path='/friends' element={<Friends />} />
+        <Route path='/weather' element={<Weather />} />
+        <Route path='/progress' element={<Progress />} />
+        <Route path='/goal' element={<Goal />} />
+        <Route path='*' element={<NotFound />} />
+    </Routes>
   
     <footer className="footer">
     <div className="container-fluid">
@@ -45,4 +51,8 @@ export default function App() {
   </div>
   </BrowserRouter>
   );
+}
+
+function NotFound() {
+  return <main className="container-fluid bg-secondary text-center">404: Return to sender. Address unknown.</main>;
 }
