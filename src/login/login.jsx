@@ -2,8 +2,22 @@ import React from 'react';
 
 export function Login() {
   return (
-    <main className="container-fluid bg-secondary text-center">
-      <div>login displayed here</div>
+    <main className="container-fluid text-center">
+        <h1>Changing sleep habits one day at a time.</h1>
+        <form method="get" action="track.html">
+            <div className="input-group mb-3">
+                <span className="input-group-text">Username</span>
+                <input className="form-control" type="text" placeholder="your@email.com"/>
+            </div>
+            <div className="input-group mb-3">
+                <span className="input-group-text">Password</span>
+                <input className="form-control" type="text" placeholder="password"/>
+            </div>
+            <div>
+                <button type="submit" className="btn btn-primary">Login</button>
+                <button type="submit" className="btn btn-secondary">Create</button>
+            </div>
+        </form>
     </main>
   );
 }

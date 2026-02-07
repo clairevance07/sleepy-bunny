@@ -17,7 +17,7 @@ export default function App() {
             <h1 className="navbar-brand">Sleepy Bunny</h1>
             <menu className="navbar-nav">
                 <li className="nav-item">
-                    <NavLink className="nav-link active" to="login">Login</NavLink>
+                    <NavLink className="nav-link active" to="">Login</NavLink>
                 </li>
                 <li className="nav-item">
                     <NavLink className="nav-link active" to="track">Track</NavLink>
