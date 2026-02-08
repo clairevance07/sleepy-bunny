@@ -7,11 +7,11 @@ export function Login() {
         <form method="get" action="track.html">
             <div className="input-group mb-3">
                 <span className="input-group-text">Username</span>
-                <input className="form-control" type="text" placeholder="your@email.com"/>
+                <input className="form-control" type="text" placeholder="your@email.com"></input>
             </div>
             <div className="input-group mb-3">
                 <span className="input-group-text">Password</span>
-                <input className="form-control" type="text" placeholder="password"/>
+                <input className="form-control" type="text" placeholder="password"></input>
             </div>
             <div>
                 <button type="submit" className="btn btn-primary">Login</button>

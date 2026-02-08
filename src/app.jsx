@@ -11,7 +11,7 @@ import { Weather } from './weather/weather';
 
 export default function App() {
   return ( <BrowserRouter>
-    <div>
+    <div className="body">
     <header className="container-fluid">
         <nav className="navbar fixed-top navbar-light">
             <h1 className="navbar-brand">Sleepy Bunny</h1>
@@ -32,6 +32,7 @@ export default function App() {
     </nav>
     </header>
 
+    <main>
     <Routes>
         <Route path='/' element={<Login />} exact />
         <Route path='/track' element={<Track />} />
@@ -41,6 +42,7 @@ export default function App() {
         <Route path='/goal' element={<Goal />} />
         <Route path='*' element={<NotFound />} />
     </Routes>
+    </main>
   
     <footer className="footer">
     <div className="container-fluid">
