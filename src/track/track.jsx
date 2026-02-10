@@ -3,7 +3,7 @@ import './track.css';
 
 export function Track() {
   return (
-    <main className="container-fluid text-center">
+    <div className="container-fluid text-center">
         <div id="greeting">Hi Claire!</div>
         <div className="page-content">
             <div className="bunny">
@@ -20,6 +20,6 @@ export function Track() {
                 <a id="goal" href="goal.html">Goal</a>
             </div>
         </div>
-    </main>
+    </div> 
   );
 }

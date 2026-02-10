@@ -3,7 +3,7 @@ import './goal.css';
 
 export function Goal() {
   return (
-    <main>
+    <>
         <a id="exit" href="track.html">✖️</a>
         <h2 id="h2">Goal</h2>
         <span id="overview">Sleep window:</span>
@@ -15,6 +15,6 @@ export function Goal() {
         <div>
         <button type="submit" className="btn btn-primary">Save goal</button>
         </div>
-    </main>
+    </>
   );
 }

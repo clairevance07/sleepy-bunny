@@ -3,7 +3,7 @@ import './progress.css';
 
 export function Progress() {
   return (
-        <main>
+        <>
         <a id="exit" href="track.html">✖️</a>
         <h2 id="overview">Progress</h2>
         <div className="container">
@@ -44,6 +44,6 @@ export function Progress() {
             <div className="card">28</div>
         </div>
         <div id="streak">Streak: 1</div>
-    </main>
+    </>
   );
 }

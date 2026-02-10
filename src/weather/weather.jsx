@@ -3,7 +3,7 @@ import './weather.css';
 
 export function Weather() {
   return (
-    <main>
+    <>
         <h2 className="weather-title">Weather for the week</h2>
         <div className="container">
             <div className="day-header">Sun</div>
@@ -28,6 +28,6 @@ export function Weather() {
             <div className="day-header" id="temp">55</div>
             <div className="day-header" id="temp">60</div>
         </div>
-    </main>
+    </>
   );
 }
