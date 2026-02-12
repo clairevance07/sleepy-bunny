@@ -1,3 +1,5 @@
+
+
 #exit {
   text-decoration: none;
   align-self: start;
@@ -15,12 +17,17 @@
   padding-bottom: 0.5em;
 }
 
-#overview {
+#window {
   padding-bottom: 0.2em;
   font-size: 1.5em;
 }
 
-.form-control {
+#start {
+  width: 6em;
+  margin: 2em;
+}
+
+#end {
   width: 6em;
   margin: 2em;
 }
@@ -31,7 +38,7 @@
   align-items: center;
 }
 
-.btn-primary {
+#save {
   --bs-btn-bg: #a7f3d0;
   --bs-btn-border-color: #a7f3d0;
   --bs-btn-hover-bg: #7fd2ab;

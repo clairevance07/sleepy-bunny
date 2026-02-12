@@ -2,7 +2,7 @@ import React from 'react';
 
 export function Login() {
   return (
-    <main className="container-fluid text-center">
+    <main className="center-layout">
         <h1>Changing sleep habits one day at a time.</h1>
         <form method="get" action="track.html">
             <div className="input-group mb-3">

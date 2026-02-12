@@ -1,102 +1,21 @@
-body {
-  display: flex;
-  flex-direction: column;
-  min-width: 375px;
-  color: #2E2A3B;
-  background-color: #faf7fc;
-}
-
-header {
-  flex: 0 80px;
-  color: #2E2A3B;
-  font-family: "Inter", sans-serif;
-}
-
-main {
-  flex: 1 calc(100vh - 120px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #2E2A3B;
-  font-family: "Inter", sans-serif;
-}
-
-footer {
-  flex: 0 30px;
-  color: #2E2A3B;
-  font-family: "Inter", sans-serif;
-  background-color: #7e62bf;
-}
-
-menu {
-  flex: 1;
-  display: flex;
-  flex-direction: row !important;
-  list-style: none;
-  color: #2E2A3B;
-  font-family: "Inter", sans-serif;
-}
-
-menu .nav-item {
-  padding: 0 0.3em;
-}
-
-.navbar-light {
-  background-color: #beb1f0;
-}
-
-@media (max-height: 600px) {
-  header {
-    display: none;
-  }
-  footer {
-    display: none;
-  }
-  main {
-    flex: 1 100vh;
-  }
-}
-
-footer a {
-  float: right;
-}
-
-.footer {
-  background-color: #7e62bf;
-  color:#eae6fc;
-  padding: 0.5em; 
-}
-
-.navbar-brand {
-  padding-left: 1em;
-  margin: 0em;
-  font-family: "Copperplate", "Copperplate Gothic Light", serif;
-}
-
-.navbar-nav {
-  justify-content: end;
-  align-items: center;
-  padding-inline-end: 1em;
-  margin-top: 0em;
-}
-
-.container {
+.weather-container {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-gap: 1em;
   width: 100%;
 }
 
-.card {
+.weather-card {
+  display: flex;
   aspect-ratio: 1 / 1;
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  background:#7e62bf
+  background:#7e62bf;
+  border-radius: 6px;
 }
 
-.day-header {
+.day {
   text-align: center;
   justify-content: center;
   grid-template-rows: 10px;
@@ -107,6 +26,9 @@ footer a {
   padding: 1em;
 }
 
-#temp {
+.temp {
   font-weight: bold;
+  text-align: center;
+  justify-content: center;
+  grid-template-rows: 10px;
 }
