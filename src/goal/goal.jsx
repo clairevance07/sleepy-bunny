@@ -1,10 +1,11 @@
 import React from 'react';
 import './goal.css';
+import { NavLink } from 'react-router-dom';
 
 export function Goal() {
   return (
     <>
-        <a id="exit" href="track.html">✖️</a>
+        <NavLink id="exit" to="../track">✖️</NavLink>
         <h2 id="h2">Goal</h2>
         <span id="window">Sleep window:</span>
         <div className="information">

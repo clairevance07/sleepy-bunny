@@ -1,5 +1,6 @@
 import React from 'react';
 import './track.css';
+import { NavLink } from 'react-router-dom';
 
 export function Track() {
   return (
@@ -16,8 +17,8 @@ export function Track() {
             </div>
             
             <div className="sidebar">
-                <a id="progress" href="progress.html">Progress</a>
-                <a id="goal" href="goal.html">Goal</a>
+                <NavLink id="progress" to="../progress">Progress</NavLink>
+                <NavLink id="goal" to="../goal">Goal</NavLink>
             </div>
         </div>
     </div> 

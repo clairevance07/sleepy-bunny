@@ -1,10 +1,11 @@
 import React from 'react';
 import './progress.css';
+import { NavLink } from 'react-router-dom';
 
 export function Progress() {
   return (
         <>
-        <a id="exit" href="track.html">✖️</a>
+        <NavLink id="exit" to="../track">✖️</NavLink>
         <h2 id="overview">Progress</h2>
         <div className="container">
             <div className="day-header">Sun</div>
