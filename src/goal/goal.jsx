@@ -1,5 +1,6 @@
 import React from 'react';
 import './goal.css';
+import { useNavigate } from 'react-router-dom';
 
 export function Goal() {
   return (

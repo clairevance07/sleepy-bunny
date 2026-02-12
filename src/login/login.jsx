@@ -2,7 +2,7 @@ import React from 'react';
 
 export function Login() {
   return (
-    <main className="center-layout">
+    <main className="center-layout login">
         <h1>Changing sleep habits one day at a time.</h1>
         <form method="get" action="track.html">
             <div className="input-group mb-3">
@@ -13,7 +13,7 @@ export function Login() {
                 <span className="input-group-text">Password</span>
                 <input className="form-control" type="text" placeholder="password"></input>
             </div>
-            <div>
+            <div class="form">
                 <button type="submit" className="btn btn-primary">Login</button>
                 <button type="submit" className="btn btn-secondary">Create</button>
             </div>
