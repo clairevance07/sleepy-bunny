@@ -78,9 +78,9 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Bundled using Vite** - I did not complete this part of the deliverable.
-- [ ] **Components** - I did not complete this part of the deliverable.
-- [ ] **Router** - I did not complete this part of the deliverable.
+- [x] **Bundled using Vite** - I downloaded Vite and used it to npm run dev while developing my webpage.
+- [x] **Components** - I have components for my login, track, weather, and friends page, as well as my progress and goal pages.
+- [x] **Router** - All buttons in the nav bar can be clicked to visit new react pages. Login and create buttons link to track page, and progress and goal pages can be clicked from track page and their "x" buttons link back to track. 
 
 ## 🚀 React part 2: Reactivity deliverable
 
