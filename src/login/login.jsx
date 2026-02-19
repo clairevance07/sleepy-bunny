@@ -1,24 +1,24 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 
-export function Login() {
+import { Unauthenticated } from './unauthenticated';
+import { Authenticated } from './authenticated';
+import { AuthState } from './authState';
+
+export function Login({ userName, authState, onAuthChange }) {
   return (
     <main className="center-layout login">
-        <h1>Changing sleep habits one day at a time.</h1>
-        <form method="get" action="/track">
-            <div className="input-group mb-3">
-                <span className="input-group-text">Username</span>
-                <input className="form-control" type="text" placeholder="your@email.com"></input>
-            </div>
-            <div className="input-group mb-3">
-                <span className="input-group-text">Password</span>
-                <input className="form-control" type="text" placeholder="password"></input>
-            </div>
-            <div class="form">
-                <button type="submit" className="btn btn-primary" onClick={useNavigate("/track")}>Login</button>
-                <button type="submit" className="btn btn-secondary" onClick={useNavigate("/track")}>Create</button>
-            </div>
-        </form>
+        {authState !== AuthState.Authenticated && <h1>Changing sleep habits one day at a time.</h1>}
+        {authState === AuthState.Authenticated && (
+          <Authenticated userName={userName} onLogout={() => onAuthChange(userName, AuthState.Unauthenticated)} />
+        )}
+        {authState === AuthState.Unauthenticated && (
+          <Unauthenticated
+            userName={userName}
+            onLogin={(loginUserName) => {
+              onAuthChange(loginUserName, AuthState.Authenticated);
+            }}
+          />
+        )}
     </main>
   );
 }
