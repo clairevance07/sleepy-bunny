@@ -20,7 +20,6 @@ export function Unauthenticated(props) {
 
   return (
     <main className="center-layout login">
-        <h1>Changing sleep habits one day at a time.</h1>
         <form method="get" action="/track">
             <div className="input-group mb-3">
                 <span className="input-group-text">Username</span>

@@ -69,10 +69,6 @@ menu .nav-item {
   background-color: #beb1f0;
 }
 
-h1 {
-  padding: 0.5em;
-}
-
 @media (max-height: 600px) {
   header {
     display: none;
@@ -114,4 +110,34 @@ footer a {
 
 .login{
   padding-top: 10%
+}
+
+.btn-primary:disabled {
+  background-color: #d2c5de;
+  border-color: #d2c5de;
+  opacity: 0.65;
+  color: black;
+}
+
+.btn-secondary:disabled {
+  background-color: #99c6bb;
+  border-color: #99c6bb;
+  opacity: 0.65;
+  color: black;
+}
+
+.playerName {
+  font-size: 2.5rem;
+  font-weight: 500;
+  color: #6f42c1;
+  margin-bottom: 10px;
+  justify-self: center;
+  text-align: center;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }

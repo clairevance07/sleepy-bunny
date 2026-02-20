@@ -12,14 +12,16 @@ export function Authenticated(props) {
     }
 
     return (
-        <main>
-            <div className='playerName'>{props.userName}</div>
+        <div>
+            <div className='playerName'>{`Welcome, ${props.userName}!`}</div>
+            <div className='buttons'>
             <Button variant='primary' onClick={() => navigate('/play')}>
                 Play
             </Button>
             <Button variant='secondary' onClick={() => logout()}>
                 Logout
             </Button>
-        </main>
+            </div>
+        </div>
     )
 }
