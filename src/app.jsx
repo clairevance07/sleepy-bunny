@@ -8,8 +8,13 @@ import { Login } from './login/login';
 import { Progress } from './progress/progress';
 import { Track } from './track/track';
 import { Weather } from './weather/weather';
+import { AuthState } from './login/authState';
 
-export default function App() {
+function App() {
+    const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
+    const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
+    const [authState, setAuthState] = React.useState(currentAuthState);
+
   return ( <BrowserRouter>
     <div className="body">
     <header className="container-fluid">
@@ -19,12 +24,16 @@ export default function App() {
                 <li className="nav-item">
                     <NavLink className="nav-link active" to="">Login</NavLink>
                 </li>
+                {authState === AuthState.Authenticated && (
                 <li className="nav-item">
                     <NavLink className="nav-link active" to="track">Track</NavLink>
                 </li>
+                )}
+                {authState === AuthState.Authenticated && (
                 <li className="nav-item">
                     <NavLink className="nav-link active" to="friends">Friends</NavLink>
                 </li>
+                )}
                 <li className="nav-item">
                     <NavLink className="nav-link active" to="weather">Weather</NavLink>
                 </li>
@@ -34,7 +43,12 @@ export default function App() {
 
     <main>
     <Routes>
-        <Route path='/' element={<Login />} exact />
+        <Route path='/' element={<Login userName={userName}
+                authState={authState}
+                onAuthChange={(userName, authState) => {
+                  setAuthState(authState);
+                  setUserName(userName);
+                }}/>} exact />
         <Route path='/track' element={<Track />} />
         <Route path='/friends' element={<Friends />} />
         <Route path='/weather' element={<Weather />} />
@@ -58,3 +72,5 @@ export default function App() {
 function NotFound() {
   return <main className="container-fluid bg-secondary text-center">404: Return to sender. Address unknown.</main>;
 }
+
+export default App;

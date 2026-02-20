@@ -9,7 +9,7 @@ export function MessageDialog(props) {
       <Modal.Body>{props.message}</Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>
-      </Modal.Footer>
+      </Modal.Footer> 
     </Modal>
   );
 }
