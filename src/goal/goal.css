@@ -15,19 +15,22 @@
   padding-bottom: 0.5em;
 }
 
-#window {
-  padding-bottom: 0.2em;
+.window {
   font-size: 1.5em;
+}
+
+#current {
+  padding-bottom: 1.5em;
 }
 
 #start {
   width: 6em;
   margin: 2em;
+  text-align: center;
 }
 
-#end {
-  width: 6em;
-  margin: 2em;
+#update {
+  color:#7e62bf;
 }
 
 .information {
