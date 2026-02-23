@@ -9,26 +9,37 @@ export function Goal(props) {
   const[inputValue, saveInputValue] = React.useState("");
 
   const saveGoal = () => {
-    
-  }
+    if (inputValue.trim() === "") {
+      alert("Please enter a sleep goal!");
+      return;
+    }
 
-  const handleGoalChange = (event) => {
-    const newGoal = event.target.value;
-    setSleepGoal(newGoal);
-    localStorage.setItem('sleepGoal', JSON.stringify(newGoal))
+    setSleepGoal(inputValue);
+    localStorage.setItem('sleepGoal', inputValue);
+
+    saveInputValue("");
+    if (inputValue < 8) {
+      alert("Sleep goal updated successfully. You should probably aim to get more sleep than that though...")
+    }
+    else if (inputValue > 24) {
+      alert("I don't think you're capable of sleeping longer than the hours in the day...")
+    }
+    else {
+      alert("Sleep goal updated successfully 🐰")
+    }
   }
 
   return (
     <>
         <NavLink id="exit" to="../track">✖️</NavLink>
         <h2 id="h2">Goal</h2>
-        <div className = "window" id="current">Current goal: {sleepGoal} hours</div>
+        <div className = "window" id="current">Current goal: {sleepGoal || 8} hours</div>
         <span className="window" id="update">Update goal </span>
         <div className="information">
-            <input className="form-control" id="start" type="text" placeholder="hours"></input>        
+            <input className="form-control" id="start" type="number" placeholder="hours" value={inputValue} onChange={(e) => saveInputValue(e.target.value)}></input>        
         </div>
         <div>
-        <button type="submit" className="btn btn-primary" id="save">Save goal</button>
+        <button type="submit" className="btn btn-primary" id="save" onClick={saveGoal}>Save goal</button>
         </div>
     </>
   );
