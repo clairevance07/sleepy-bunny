@@ -12,12 +12,16 @@
   font-weight: bold;
 }
 
-.card:nth-child(odd) {
-  background:#beb1f0;
+.under {
+  background:#FDE68A;
 }
 
-.card:nth-child(even) {
+.reached {
   background:#a7f3d0;
+}
+
+.empty {
+  background: #C4C4C4;
 }
 
 #streak {
@@ -48,4 +52,52 @@
   justify-content: center;
   grid-template-rows: 10px;
   font-weight: bold;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background: #cef3e2;
+  padding: 30px;
+  border-radius: 12px;
+
+  width: 90%;    
+  max-width: 450px;
+  
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+.modal-content input {
+  width: 100%; 
+  padding: 10px;
+  box-sizing: border-box; 
+}
+
+#button {
+  position: absolute;
+  left: 1em;
+  top: 1em;
+  z-index: 2000;
+  background: #beb1f0;
+  border-color: #beb1f0;
+  border-radius: 15%;
+}
+
+#progress-header {
+  font-family: "Inter", sans-serif;
+  padding-top: 1em;
 }
