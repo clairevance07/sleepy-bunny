@@ -2,7 +2,21 @@ import React from 'react';
 import './progress.css';
 import { NavLink } from 'react-router-dom';
 
+const getPastDays = () => {
+    const days = [];
+    for (let i = 0; i < 28; i++) {
+      const date = new Date();
+      date.setDate(date.getDate() - i);
+      days.push(date.toISOString().split('T')[0])
+    }
+    return days;
+  }
+
 export function Progress() {
+
+  const daysList = getPastDays();
+  
+
   return (
         <>
         <NavLink id="exit" to="../track">✖️</NavLink>
