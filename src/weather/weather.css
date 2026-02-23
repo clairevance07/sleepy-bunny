@@ -2,7 +2,15 @@
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-gap: 1em;
-  width: 100%;
+  width: 90%;
+}
+
+.weather-column {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5 em;
+  align-items: center;
+  gap: 0.8em;
 }
 
 .weather-card {
@@ -13,6 +21,8 @@
   font-weight: bold;
   background:#7e62bf;
   border-radius: 6px;
+  width: 80%;
+  font-size: 2em;
 }
 
 .day {

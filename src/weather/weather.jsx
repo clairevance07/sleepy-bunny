@@ -1,32 +1,42 @@
 import React from 'react';
 import './weather.css';
 
-export function Weather() {
+export function Weather(props) {
+  const [forecast, setForecast] = React.useState([
+    { dayName: "Sun", weather: "...", temperature: "..." },
+    { dayName: "Mon", weather: "...", temperature: "..." },
+    { dayName: "Tue", weather: "...", temperature: "..." },
+    { dayName: "Wed", weather: "...", temperature: "..." },
+    { dayName: "Thu", weather: "...", temperature: "..." },
+    { dayName: "Fri", weather: "...", temperature: "..." },
+    { dayName: "Sat", weather: "...", temperature: "..." },
+  ]);
+
+  React.useEffect(() => {
+    const placeholderData = [
+      { dayName: "Sun", weather: "☁️", temperature: 60 },
+      { dayName: "Mon", weather: "☀️", temperature: 70 },
+      { dayName: "Tue", weather: "⛅", temperature: 66 },
+      { dayName: "Wed", weather: "⛅", temperature: 65 },
+      { dayName: "Thu", weather: "🌧️", temperature: 50 },
+      { dayName: "Fri", weather: "🌧️", temperature: 55 },
+      { dayName: "Sat", weather: "☁️", temperature: 60 },
+    ];
+
+    setForecast(placeholderData);
+  }, []);
+
   return (
     <>
         <h2 className="weather-title">Weather for the week</h2>
-        <div className="container">
-            <div className="day">Sun</div>
-            <div className="day">Mon</div>
-            <div className="day">Tue</div>
-            <div className="day">Wed</div>
-            <div className="day">Thu</div>
-            <div className="day">Fri</div>
-            <div className="day">Sat</div>
-            <div className="weather-card">☁️</div>
-            <div className="weather-card">☀️</div>
-            <div className="weather-card">⛅</div>
-            <div className="weather-card">⛅</div>
-            <div className="weather-card">🌧️</div>
-            <div className="weather-card">🌧️</div>
-            <div className="weather-card">☁️</div>
-            <div className="temp">60</div>
-            <div className="temp">70</div>
-            <div className="temp">66</div>
-            <div className="temp">65</div>
-            <div className="temp">50</div>
-            <div className="temp">55</div>
-            <div className="temp">60</div>
+        <div className="weather-container">
+        {forecast.map((dayData, index) => (
+          <div key={index}className="weather-column">
+            <div className="day">{dayData.dayName}</div>
+            <div className="weather-card">{dayData.weather}</div>
+            <div className="temp">{dayData.temperature}°F</div>
+        </div>
+      ))}
         </div>
     </>
   );
