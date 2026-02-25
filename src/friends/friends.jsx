@@ -3,15 +3,25 @@ import './friends.css';
 
 export function Friends() {
     
-    const [friendsList, setFriendsList] = React.useState([]);
+    const [friendsList, setFriendsList] = React.useState(() => {
+        const savedFriends = localStorage.getItem("userFriends");
+        return savedFriends ? JSON.parse(savedFriends) : [];
+    });
+
     const [friendCode, setFriendCode] = React.useState("");
+
+    React.useEffect(() => {
+        localStorage.setItem('userFriends', JSON.stringify(friendsList));
+    }, [friendsList]);
 
     const users = {
         "ABC" : "Kaitlyn",
-        "EFG" : "Hallie",
-        "HIJ" : "Maddie",
-        "KLM" : "Katelyn",
-        "NOP" : "Beyonce"
+        "DEF" : "Hallie",
+        "GHI" : "Maddie",
+        "JKL" : "Katelyn",
+        "MNO" : "Beyonce",
+        "PQR" : "Chase",
+        "STU" : "Mason"
     }
 
     const handleAddFriends = () => {
@@ -27,18 +37,20 @@ export function Friends() {
         if (nameFound) {
             if (friendsList.some(friend => friend.code === upperCode)) {
                 alert("You've already added this friend!");
+                setFriendCode("");
                 return;
             }
             setFriendsList([...friendsList, {name : nameFound, code : upperCode, streak: 0}]);
             setFriendCode("");
             }
         else {
-                alert("Invalid Code!")
+                alert("Invalid Code!");
+                setFriendCode("");
         }
     }
 
     return (
-        <>
+        <div>
         <div className="friends-page">
             <div className = "friends-grid">
                 {friendsList.map((friend, index) => (
@@ -53,9 +65,9 @@ export function Friends() {
         </div>
 
         <div className="add-friend">
-            <input className="form-control" id="field" type="text" placeholder="Insert friend code" onChange={(e) => setFriendCode(e.target.value)}></input>
-            <button onClick={handleAddFriends} type="submit" className="btn send" id="add">Add friend</button>
+            <input className="form-control" id="field" type="text" placeholder="Insert friend code" value={friendCode} onChange={(e) => setFriendCode(e.target.value)}></input>
+            <button onClick={handleAddFriends} type="button" className="btn send" id="add">Add friend</button>
         </div>   
-    </>
+    </div>
   );
 }
