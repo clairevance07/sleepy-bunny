@@ -40,6 +40,7 @@ menu {
 
 menu .nav-item {
   padding: 0 0.3em;
+  font-size: clamp(0.8rem, 2.5vw, 1rem);
 }
 
 .btn-primary {
@@ -102,6 +103,8 @@ footer a {
   align-items: center;
   padding-inline-end: 1em;
   margin-top: 0em;
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  white-space: nowrap;
 }
 
 .form {

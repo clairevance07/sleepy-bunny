@@ -42,6 +42,22 @@ export function Progress() {
     setHoursInput("");
   }
 
+  const calculateStreak = () => {
+    let count = 0;
+
+    for (let date of daysList) {
+      const hours = sleepLogs[date];
+
+      if (hours !== undefined && hours >= goal) {
+        count ++
+      }
+      else {
+        break;
+      }
+    }
+    return count;
+  }
+
   return (
         <>
         <NavLink id="exit" to="../track">✖️</NavLink>
@@ -62,11 +78,14 @@ export function Progress() {
               }
 
               return (
-                <div className={`card ${status}`} onClick={() => setSelectedDate(dateString)}>{formatDate(dateString)}</div>
+                <div className={`card ${status}`} onClick={() => setSelectedDate(dateString)}>
+                  <div className="date">{formatDate(dateString)}</div>
+                  <div className="hours">{hours !== undefined ? `${hours} hours` : "--"}</div>
+                </div>
               );
             })}
         </div>
-        <div id="streak">Streak: 1</div>
+        <div id="streak">Streak: {calculateStreak()}</div>
 
         {selectedDate && (
         <div className="modal-overlay">
