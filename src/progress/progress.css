@@ -101,3 +101,13 @@
   font-family: "Inter", sans-serif;
   padding-top: 1em;
 }
+
+#save {
+  background:#beb1f0;
+  border-color:#beb1f0;
+}
+
+#save:active {
+  background:#7e62bf;
+  border-color:#7e62bf;
+}

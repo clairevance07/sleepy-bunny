@@ -12,6 +12,14 @@ const getPastDays = () => {
     return days;
   }
 
+const formatDate = (dateStr) => {
+  const date = new Date(dateStr + "T00:00:00");
+  return date.toLocaleDateString('en-US', { 
+    month: 'long', 
+    day: 'numeric' 
+  });
+};
+
 export function Progress() {
 
   const daysList = getPastDays();
@@ -20,6 +28,19 @@ export function Progress() {
     return JSON.parse(localStorage.getItem('sleepLog')) || {};
   });
   const [selectedDate, setSelectedDate] = React.useState(null);
+  const [hoursInput, setHoursInput] = React.useState("");
+
+  const handleSave = () => {
+    if (!hoursInput) return;
+
+    const updatedLogs = {...sleepLogs, [selectedDate]: Number(hoursInput)};
+    setSleepLogs(updatedLogs);
+
+    localStorage.setItem('sleepLog', JSON.stringify(updatedLogs));
+
+    setSelectedDate(null);
+    setHoursInput("");
+  }
 
   return (
         <>
@@ -41,7 +62,7 @@ export function Progress() {
               }
 
               return (
-                <div className={`card ${status}`} onClick={() => setSelectedDate(dateString)}>{dateString}</div>
+                <div className={`card ${status}`} onClick={() => setSelectedDate(dateString)}>{formatDate(dateString)}</div>
               );
             })}
         </div>
@@ -50,9 +71,10 @@ export function Progress() {
         {selectedDate && (
         <div className="modal-overlay">
           <div className="modal-content">
-            <h2 id="progress-header">{selectedDate}</h2>
+            <h2 id="progress-header">{formatDate(selectedDate)}</h2>
             <button id="button" onClick={() => setSelectedDate(null)}>✖️</button>
-            <input className="form-control" id="start" type="number" placeholder="hours"></input>
+            <input className="form-control" id="start" type="number" placeholder="hours" value={hoursInput} onChange={(e) => setHoursInput(e.target.value)}></input>
+            <button type="submit" className="btn" id="save" onClick={handleSave}>Save</button>
           </div>
         </div>
       )}
