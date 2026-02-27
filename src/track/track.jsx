@@ -26,6 +26,7 @@ export function Track() {
         if (sleepHours < 4) return "/sleeping-bunny.png";
         if (sleepHours < 6) return "/laying-down-bunny.png";
         if (sleepHours < 8) return "/droopy-bunny.png";
+        if (sleepHours < 10) return "/normal-bunny.png";
         if (sleepHours >= 10) return "/standing-bunny.png";
         return "/normal-bunny.png";
     };
