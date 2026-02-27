@@ -1,8 +1,9 @@
 .page-content {
   display: flex;
+  width: 100%;
 }
 
-.bunny {
+.track-bunny {
   position: relative;
   display: block;
   justify-content: center;
@@ -15,76 +16,6 @@
   margin: 2em auto;
 }
 
-#head {
-  position: absolute;
-  width: 60%;
-  height: 50%;
-  background-color: #beb1f0;
-  border-radius: 50%;
-}
-
-#ear1 {
-  position: absolute;
-  top: -20%;
-  width: 15%;
-  height: 30%;
-  background: #beb1f0;
-  border-radius: 50% 50% 0 0;
-  left: 10%; 
-  transform: rotate(-10deg);
-}
-
-#ear2 {
-  position: absolute;
-  top: -20%;
-  width: 15%;
-  height: 30%;
-  background: #beb1f0;
-  border-radius: 50% 50% 0 0;
-  left: 32%; 
-  transform: rotate(10deg);
-}
-
-#nose {
-  position: absolute;
-  background:#2E2A3B;
-  border-radius: 50%;
-  left: 24%;
-  top: 30%;
-  width: 10%; 
-  height: 5%;
-}
-
-#eye1 {
-  position: absolute;
-  background:#2E2A3B;
-  border-radius: 50%;
-  left: 40%;
-  top: 15%;
-  width: 10%; 
-  height: 10%;
-}
-
-#eye1 {
-  position: absolute;
-  background:#2E2A3B;
-  border-radius: 50%;
-  left: 35%;
-  top: 20%;
-  width: 5%; 
-  height: 5%;
-}
-
-#eye2 {
-  position: absolute;
-  background:#2E2A3B;
-  border-radius: 50%;
-  left: 15%;
-  top: 20%;
-  width: 5%; 
-  height: 5%;
-}
-
 .sidebar {
   display: flex;
   justify-self: end;
@@ -95,20 +26,36 @@
   flex-direction: column;
   align-items: center;
   height: 50vh;
-  width: 40%;
+  width: 50%;
   margin: 0.5em;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-#greeting {
-  display: flex;
-  align-self: center;
+.track-page {
+  height: 100%;
   justify-content: center;
-  margin-top: 5vh;
-  font-size: 1.5em;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  align-content: center;
+}
+
+.sleep-stat {
+  font-family: 'Segoe UI', sans-serif;
   color: #7fd2ab;
-  font-weight: bolder;
+  font-size: 2rem;
+  font-weight: 800;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+}
+
+.bunny-container {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bunny-img {
+  width: 60%; 
+  max-width: 250px; 
+  height: auto;
 }
 
 #progress {
@@ -118,6 +65,7 @@
   display: grid;
   align-content: center;
   background-color:#7e62bf;
+  border-color:#7e62bf;
   color:#eae6fc;
   width: 100%;
   max-width: 30vh;
@@ -146,4 +94,12 @@
 
 #goal:hover {
   background-color:#beb1f0;
+}
+
+@media () {
+  .bunny-img {
+    width: 80%; 
+    max-width: 350px; 
+    height: auto;
+  }
 }

@@ -3,14 +3,15 @@ import './progress.css';
 import { NavLink } from 'react-router-dom';
 
 const getPastDays = () => {
-    const days = [];
-    for (let i = 0; i < 28; i++) {
-      const date = new Date();
-      date.setDate(date.getDate() - i);
-      days.push(date.toISOString().split('T')[0])
-    }
-    return days;
+  const days = [];
+  for (let i = 0; i < 28; i++) {
+    const date = new Date();
+    date.setHours(0, 0, 0, 0); 
+    date.setDate(date.getDate() - i);
+    days.push(date.toISOString().split('T')[0]);
   }
+  return days;
+}
 
 const formatDate = (dateStr) => {
   const date = new Date(dateStr + "T00:00:00");
@@ -37,6 +38,8 @@ export function Progress() {
     setSleepLogs(updatedLogs);
 
     localStorage.setItem('sleepLog', JSON.stringify(updatedLogs));
+
+    localStorage.setItem('lastSleep', Number(hoursInput));
 
     setSelectedDate(null);
     setHoursInput("");
