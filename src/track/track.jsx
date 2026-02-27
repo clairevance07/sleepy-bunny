@@ -4,7 +4,10 @@ import { NavLink } from 'react-router-dom';
 
 export function Track() {
 
-    const [sleepHours, setSleepHours] = React.useState(0);
+    const [sleepHours, setSleepHours] = useState(() => {
+    const saved = localStorage.getItem('lastSleep');
+    return saved ? Number(saved) : 0; 
+});
 
     React.useEffect(() => {
     const handleStorageChange = () => {
