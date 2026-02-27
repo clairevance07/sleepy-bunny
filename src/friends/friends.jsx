@@ -1,7 +1,20 @@
 import React from 'react';
 import './friends.css';
 
+const MY_FRIEND_CODE = "XYZ";
+
 export function Friends() {
+
+    const removeFriend = (code) => {
+    const updatedList = friendsList.filter(friend => friend.code !== code);
+    setFriendsList(updatedList);
+    
+    const id = Date.now();
+    setNotifications(prev => [{ id, text: "Friend removed." }, ...prev].slice(0, 5));
+    setTimeout(() => {
+        setNotifications(prev => prev.filter(n => n.id !== id));
+    }, 3000);
+};
 
     const [friendsList, setFriendsList] = React.useState(() => {
         const savedFriends = localStorage.getItem("userFriends");
@@ -76,7 +89,7 @@ export function Friends() {
     const sendHighFive = (name) => {
         const id = Date.now();
         const newNote = { id: id, text: `You sent a high five to ${name}!`};
-        setNotifications(prev => [newNote, ...prev].slice(0, 10));
+        setNotifications(prev => [newNote, ...prev].slice(0, 8));
         setTimeout(() => {
             setNotifications(prev => prev.filter(note => note.id !== id));
         }, 5000);
@@ -103,6 +116,12 @@ export function Friends() {
                 <div className="friends-grid">
                     {friendsList.map((friend, index) => (
                         <div className="friend-card" key={index}>
+                            <button 
+                                className="btn remove-btn"
+                                onClick={() => removeFriend(friend.code)}
+                                title="Remove Friend">
+                                ✖️
+                            </button>
                             <div className="friend-bunny">🐰</div>
                             <div className="friend-name">{friend.name}</div>
                             <div className="friend-stats">
@@ -123,6 +142,7 @@ export function Friends() {
                         value={friendCode} 
                         onChange={(e) => setFriendCode(e.target.value)} 
                     />
+                    <div className="personal-code">Your friend code is: <strong>{MY_FRIEND_CODE}</strong></div>
                     <button onClick={handleAddFriends} type="button" className="btn send" id="add">Add friend</button>
                 </div>
             </div>
