@@ -86,8 +86,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **All functionality implemented or mocked out** - I did not complete this part of the deliverable.
-- [ ] **Hooks** - I did not complete this part of the deliverable.
+- [x] **All functionality implemented or mocked out** - I've mocked out the login, progress, goal, and friend functionality. Login is saved to localStorage, along with the goal, current progress, and friend codes. Current useable friend codes are 'abc', 'def', 'ghi', 'jkl', 'mno', 'pqr', and 'stu'. 
+- [x] **Hooks** - I use hooks on each page for updating notifications, display, etc. One example is using useEffect to pull the latest data from localStorage and useState to change the bunny illustration on the track page based on this data.
 
 ## 🚀 Service deliverable
 

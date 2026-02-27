@@ -95,11 +95,3 @@
 #goal:hover {
   background-color:#beb1f0;
 }
-
-@media () {
-  .bunny-img {
-    width: 80%; 
-    max-width: 350px; 
-    height: auto;
-  }
-}
