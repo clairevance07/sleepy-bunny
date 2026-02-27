@@ -3,26 +3,29 @@ import './track.css';
 import { NavLink } from 'react-router-dom';
 
 export function Track() {
+    
+    const [sleepHours, setSleepHours] = React.useState(() => {
+    const today = new Date().toLocaleDateString('en-CA'); 
+    const rawData = localStorage.getItem('sleepLog');
+    if (!rawData) return 0;
 
-    const [sleepHours, setSleepHours] = useState(() => {
-    const saved = localStorage.getItem('lastSleep');
-    return saved ? Number(saved) : 0; 
+    const logs = JSON.parse(rawData);
+    return logs[today] !== undefined ? Number(logs[today]) : 0;
 });
 
-    React.useEffect(() => {
+  React.useEffect(() => {
     const handleStorageChange = () => {
-        const savedSleep = localStorage.getItem('lastSleep');
-        if (savedSleep) {
-            setSleepHours(Number(savedSleep));
-        }
+      const logs = JSON.parse(localStorage.getItem('sleepLog')) || {};
+      const dates = Object.keys(logs);
+      if (dates.length > 0) {
+        const mostRecentDate = dates.sort().pop();
+        setSleepHours(Number(logs[mostRecentDate]));
+      }
     };
 
-    handleStorageChange();
-
     window.addEventListener('storage', handleStorageChange);
-    
     return () => window.removeEventListener('storage', handleStorageChange);
-}, []);
+  }, []);
 
     const getBunnyImage = () => {
         if (sleepHours === 0) return "/normal-bunny.png";

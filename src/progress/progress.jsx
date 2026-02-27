@@ -32,18 +32,15 @@ export function Progress() {
   const [hoursInput, setHoursInput] = React.useState("");
 
   const handleSave = () => {
-    if (!hoursInput) return;
+  if (!hoursInput) return;
 
-    const updatedLogs = {...sleepLogs, [selectedDate]: Number(hoursInput)};
-    setSleepLogs(updatedLogs);
+  const updatedLogs = {...sleepLogs, [selectedDate]: Number(hoursInput)};
+  setSleepLogs(updatedLogs);
+  localStorage.setItem('sleepLog', JSON.stringify(updatedLogs));
 
-    localStorage.setItem('sleepLog', JSON.stringify(updatedLogs));
-
-    localStorage.setItem('lastSleep', Number(hoursInput));
-
-    setSelectedDate(null);
-    setHoursInput("");
-  }
+  setSelectedDate(null);
+  setHoursInput("");
+}
 
   const calculateStreak = () => {
     let count = 0;
