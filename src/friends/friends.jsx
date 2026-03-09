@@ -24,15 +24,7 @@ export function Friends() {
     const [friendCode, setFriendCode] = React.useState("");
     const [notifications, setNotifications] = React.useState([]);
 
-    const users = {
-        "ABC": { name: "Kaitlyn", streak: 5, sleep: "7.5h" },
-        "DEF": { name: "Hallie", streak: 12, sleep: "8.2h" },
-        "GHI": { name: "Maddie", streak: 3, sleep: "6.0h" },
-        "JKL": { name: "Katelyn", streak: 8, sleep: "7.0h" },
-        "MNO": { name: "Beyonce", streak: 100, sleep: "9.0h" },
-        "PQR": { name: "Chase", streak: 1, sleep: "5.5h" },
-        "STU": { name: "Mason", streak: 0, sleep: "7.8h" }
-    };
+    
 
     React.useEffect(() => {
         localStorage.setItem('userFriends', JSON.stringify(friendsList));
@@ -63,9 +55,16 @@ export function Friends() {
         return () => clearInterval(interval);
     }, [friendsList]);
 
-    const handleAddFriends = () => {
+    const handleAddFriends = async () => {
         const upperCode = friendCode.toUpperCase();
-        const friendData = users[upperCode]; 
+        const response = await fetch(`/api/users/${upperCode}`); 
+
+        if (!response.ok) {
+            alert("Invalid Code!");
+            return;
+        }
+
+        const friendData = await response.json();
 
         if (friendData) {
             if (friendsList.some(friend => friend.code === upperCode)) {
