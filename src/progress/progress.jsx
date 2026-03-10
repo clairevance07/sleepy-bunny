@@ -32,15 +32,22 @@ export function Progress() {
   const [hoursInput, setHoursInput] = React.useState("");
 
   const handleSave = () => {
-  if (!hoursInput) return;
+    if (!hoursInput) return;
 
-  const updatedLogs = {...sleepLogs, [selectedDate]: Number(hoursInput)};
-  setSleepLogs(updatedLogs);
-  localStorage.setItem('sleepLog', JSON.stringify(updatedLogs));
+    const hours = Number(hoursInput);
 
-  setSelectedDate(null);
-  setHoursInput("");
-}
+    if (hours < 0 || hours > 24) {
+      alert("Sleep hours must be between 0 and 24.");
+      return;
+    }
+
+    const updatedLogs = {...sleepLogs, [selectedDate]: Number(hoursInput)};
+    setSleepLogs(updatedLogs);
+    localStorage.setItem('sleepLog', JSON.stringify(updatedLogs));
+
+    setSelectedDate(null);
+    setHoursInput("");
+  }
 
   const calculateStreak = () => {
     let count = 0;
@@ -92,7 +99,7 @@ export function Progress() {
           <div className="modal-content">
             <h2 id="progress-header">{formatDate(selectedDate)}</h2>
             <button id="button" onClick={() => setSelectedDate(null)}>✖️</button>
-            <input className="form-control" id="start" type="number" placeholder="hours" value={hoursInput} onChange={(e) => setHoursInput(e.target.value)}></input>
+            <input className="form-control" id="start" type="number" placeholder="hours" min="0" max="24"value={hoursInput} onChange={(e) => setHoursInput(e.target.value)}></input>
             <button type="submit" className="btn" id="save" onClick={handleSave}>Save</button>
           </div>
         </div>

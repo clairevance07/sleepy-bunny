@@ -28,6 +28,9 @@ const notificationsPerUser = {
     XYZ: []
 }
 
+const sleepLogsPerUser = {};
+const goalPerUser = {};
+
 const verifyAuth = (req, res, next) => {
   const token = req.cookies.token;
   const user = Object.values(authUsers).find(u => u.token === token);
@@ -151,6 +154,37 @@ app.get('/api/notifications', verifyAuth, (req, res) => {
   if (!notificationsPerUser[email]) notificationsPerUser[email] = [];
   res.send(notificationsPerUser[email]);
 });
+
+app.get('/api/sleep', verifyAuth, (req, res) => {
+  const email = req.user.email;
+
+  if(!sleepLogsPerUser[email]) sleepLogsPerUser[email] = {};
+  if (!goalPerUser[email]) goalPerUser[email] = 8;
+
+  res.send({
+    logs: sleepLogsPerUser[email],
+    goal: goalPerUser[email]
+  });
+});
+
+app.post('/api/sleep', verifyAuth, (req, res) => {
+  const email = req.user.email;
+  const { date, hours } = req.body;
+
+  if (!date || hours === undefined) {
+    return res.status(400).send({ msg: "Missing data" });
+  }
+
+  if (hours < 0 || hours > 24) {
+    return res.status(400).send({ msg: "Hours must be between 0 and 24" });
+  }
+
+  if (!sleepLogsPerUser[email]) sleepLogsPerUser[email] = {};
+
+  sleepLogsPerUser[email][date] = hours;
+
+  res.send({ success: true });
+})
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

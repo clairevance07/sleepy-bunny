@@ -7,7 +7,7 @@ export function Track() {
     const [sleepHours, setSleepHours] = React.useState(() => {
     const today = new Date().toLocaleDateString('en-CA'); 
     const rawData = localStorage.getItem('sleepLog');
-    if (!rawData) return 0;
+    if (!rawData) return null;
 
     const logs = JSON.parse(rawData);
     return logs[today] !== undefined ? Number(logs[today]) : 0;
@@ -28,7 +28,7 @@ export function Track() {
   }, []);
 
     const getBunnyImage = () => {
-        if (sleepHours === 0) return "/normal-bunny.png";
+        if (sleepHours === null) return "/normal-bunny.png";
         if (sleepHours < 4) return "/sleeping-bunny.png";
         if (sleepHours < 6) return "/laying-down-bunny.png";
         if (sleepHours < 8) return "/droopy-bunny.png";
@@ -39,7 +39,9 @@ export function Track() {
 
   return (
     <div className="container-fluid text-center track-page">
-        <div className="sleep-stat">Last night, you slept {sleepHours} hours!</div>
+        <div className="sleep-stat">{sleepHours === null
+    ? "You haven't logged sleep yet!"
+    : `Last night, you slept ${sleepHours} hours!`}</div>
         <div className="page-content">
             <div className="bunny-container">
                 <img 
