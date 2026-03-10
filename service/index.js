@@ -56,6 +56,7 @@ app.post('/api/auth/create', async (req, res) => {
   const passwordHash = await bcrypt.hash(password, 10);
 
   authUsers[email] = {
+    email: email,
     password: passwordHash,
     token: uuidv4()
   };

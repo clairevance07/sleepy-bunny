@@ -7,10 +7,13 @@ export function Authenticated(props) {
     const navigate = useNavigate();
 
     async function logout() {
-        await fetch('/api/auth/logout', { method: 'POST' });
-        localStorage.removeItem('userName');
-        props.onLogout();
-    }
+    await fetch('/api/auth/logout', { 
+        method: 'POST',
+        credentials: 'same-origin'
+    });
+    localStorage.removeItem('userName');
+    props.onLogout();
+}
 
     return (
         <div>

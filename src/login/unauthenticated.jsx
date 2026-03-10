@@ -33,6 +33,11 @@ export function Unauthenticated(props) {
     }
 
   async function createUser() {
+    if (!userName.includes('@')) {
+        setDisplayError("Please enter a valid email.");
+        return;
+    }
+
     const response = await fetch('/api/auth/create', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -53,7 +58,7 @@ export function Unauthenticated(props) {
 
   return (
     <main className="center-layout login">
-        <form method="get" action="/track">
+        <form onSubmit={(e) => e.preventDefault()}>
             <div className="input-group mb-3">
                 <span className="input-group-text">Email</span>
                 <input className="form-control" type="email" value={userName} onChange={(e) => setUserName(e.target.value)} placeholder="your@email.com"></input>
