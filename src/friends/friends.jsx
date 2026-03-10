@@ -5,15 +5,19 @@ const MY_FRIEND_CODE = "XYZ";
 
 export function Friends() {
 
-    const removeFriend = (code) => {
+    const removeFriend = async (code) => {
     const updatedList = friendsList.filter(friend => friend.code !== code);
     setFriendsList(updatedList);
+
+    await fetch('/api/notifications/XYZ', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: "Friend removed." })
+    })
     
-    const id = Date.now();
-    setNotifications(prev => [{ id, text: "Friend removed." }, ...prev].slice(0, 5));
-    setTimeout(() => {
-        setNotifications(prev => prev.filter(n => n.id !== id));
-    }, 3000);
+    const response = await fetch('/api/notifications/XYZ');
+    const data  = await response.json();
+    setNotifications(data);
 };
 
     const [friendsList, setFriendsList] = React.useState([]);
@@ -28,6 +32,16 @@ export function Friends() {
         }
 
         loadFriends();
+    }, []);
+
+    React.useEffect(() => {
+        async function loadNotifications() {
+            const response = await fetch('/api/notifications/XYZ');
+            const data = await response.json();
+            setNotifications(data);
+        }
+
+        loadNotifications();
     }, []);
 
     React.useEffect(() => {
@@ -76,13 +90,18 @@ export function Friends() {
         setFriendCode("");
     };
 
-    const sendHighFive = (name) => {
-        const id = Date.now();
-        const newNote = { id: id, text: `You sent a high five to ${name}!`};
-        setNotifications(prev => [newNote, ...prev].slice(0, 8));
-        setTimeout(() => {
-            setNotifications(prev => prev.filter(note => note.id !== id));
-        }, 5000);
+    const sendHighFive = async (name) => {
+        const text = `You sent a high five to ${name}!`;
+        
+        await fetch('/api/notifications/XYZ', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text })
+        });
+
+        const response = await fetch('/api/notifications/XYZ');
+        const data = await response.json();
+        setNotifications(data);
     };
 
     return (
