@@ -16,19 +16,19 @@ export function Friends() {
     }, 3000);
 };
 
-    const [friendsList, setFriendsList] = React.useState(() => {
-        const savedFriends = localStorage.getItem("userFriends");
-        return savedFriends ? JSON.parse(savedFriends) : [];
-    });
-
+    const [friendsList, setFriendsList] = React.useState([]);
     const [friendCode, setFriendCode] = React.useState("");
     const [notifications, setNotifications] = React.useState([]);
-
     
-
     React.useEffect(() => {
-        localStorage.setItem('userFriends', JSON.stringify(friendsList));
-    }, [friendsList]);
+        async function loadFriends() {
+            const response = await fetch('/api/friends/XYZ');
+            const data = await response.json();
+            setFriendsList(data);
+        }
+
+        loadFriends();
+    }, []);
 
     React.useEffect(() => {
         if (friendsList.length === 0) return;
@@ -57,32 +57,23 @@ export function Friends() {
 
     const handleAddFriends = async () => {
         const upperCode = friendCode.toUpperCase();
-        const response = await fetch(`/api/users/${upperCode}`); 
+
+        const response = await fetch(`/api/friends/XYZ/add`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ friendCode: upperCode })
+        });
 
         if (!response.ok) {
-            alert("Invalid Code!");
+            alert("Invalid Code or already added!");
             return;
         }
 
-        const friendData = await response.json();
+        const updated = await fetch('/api/friends/XYZ');
+        const data = await updated.json();
+        setFriendsList(data);
 
-        if (friendData) {
-            if (friendsList.some(friend => friend.code === upperCode)) {
-                alert("Already added!");
-                return;
-            }
-            
-            setFriendsList([...friendsList, {
-                name: friendData.name, 
-                code: upperCode, 
-                streak: friendData.streak, 
-                sleep: friendData.sleep 
-            }]);
-            
-            setFriendCode("");
-        } else {
-            alert("Invalid Code!");
-        }
+        setFriendCode("");
     };
 
     const sendHighFive = (name) => {
