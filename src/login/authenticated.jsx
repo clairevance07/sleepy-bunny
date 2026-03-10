@@ -6,7 +6,8 @@ import Button from 'react-bootstrap/Button';
 export function Authenticated(props) {
     const navigate = useNavigate();
 
-    function logout() {
+    async function logout() {
+        await fetch('/api/auth/logout', { method: 'POST' });
         localStorage.removeItem('userName');
         props.onLogout();
     }

@@ -9,25 +9,58 @@ export function Unauthenticated(props) {
   const [displayError, setDisplayError] = React.useState(null);
 
   async function loginUser() {
-    localStorage.setItem('userName', userName);
-    props.onLogin(userName);
-  }
+    if (!userName.includes('@')) {
+        setDisplayError("Please enter a valid email.");
+        return;
+    }
+    
+    const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+        email: userName,
+        password: password
+        })
+    });
+
+    if (response.ok) {
+        localStorage.setItem('userName', userName);
+        props.onLogin(userName);
+    } else {
+        const body = await response.json();
+        setDisplayError(`Error: ${body.msg}`);
+    }
+    }
 
   async function createUser() {
-    localStorage.setItem('userName', userName);
-    props.onLogin(userName);
-  }
+    const response = await fetch('/api/auth/create', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+        email: userName,
+        password: password
+        })
+    });
+
+    if (response.ok) {
+        localStorage.setItem('userName', userName);
+        props.onLogin(userName);
+    } else {
+        const body = await response.json();
+        setDisplayError(`Error: ${body.msg}`);
+    }
+    }
 
   return (
     <main className="center-layout login">
         <form method="get" action="/track">
             <div className="input-group mb-3">
-                <span className="input-group-text">Username</span>
-                <input className="form-control" type="text" value={userName} onChange={(e) => setUserName(e.target.value)} placeholder="your@email.com"></input>
+                <span className="input-group-text">Email</span>
+                <input className="form-control" type="email" value={userName} onChange={(e) => setUserName(e.target.value)} placeholder="your@email.com"></input>
             </div>
             <div className="input-group mb-3">
                 <span className="input-group-text">Password</span>
-                <input className="form-control" type="text" onChange={(e) => setPassword(e.target.value)} placeholder="password"></input>
+                <input className="form-control" type="password" onChange={(e) => setPassword(e.target.value)} placeholder="password"></input>
             </div>
             <div className="form">
                 <Button variant='primary' onClick={() => loginUser()} disabled={!userName || !password}>
