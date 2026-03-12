@@ -24,9 +24,17 @@ const formatDate = (dateStr) => {
 export function Progress() {
   React.useEffect(() => {
     async function loadProgress() {
-      const response = await fetch('/api/sleep')
+      const response = await fetch('/api/sleep');
+
+      if (response.ok) {
+        const data = await response.json();
+        setSleepLogs(data.logs || {});
+        setGoal(data.goal || 8);
+      }
     }
-  })
+
+    loadProgress();
+  }, []);
 
   const daysList = getPastDays();
   const [goal, setGoal] = React.useState(8);
