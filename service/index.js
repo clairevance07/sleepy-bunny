@@ -64,7 +64,7 @@ app.post('/api/auth/create', async (req, res) => {
     token: uuidv4()
   };
 
-  res.cookie('token', authUsers[email].token, { httpOnly: true, secure: true });
+  res.cookie('token', authUsers[email].token, { httpOnly: true});
 
   res.send({ email });
 });
@@ -159,7 +159,9 @@ app.get('/api/sleep', verifyAuth, (req, res) => {
   const email = req.user.email;
 
   if(!sleepLogsPerUser[email]) sleepLogsPerUser[email] = {};
-  if (!goalPerUser[email]) goalPerUser[email] = 8;
+  if (goalPerUser[email] === undefined) {
+    goalPerUser[email] = 8;
+  }
 
   res.send({
     logs: sleepLogsPerUser[email],

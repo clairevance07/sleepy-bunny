@@ -5,14 +5,16 @@ import { NavLink } from 'react-router-dom';
 export function Goal() {
 
   const [sleepGoal, setSleepGoal] = React.useState(8);
-  const[inputValue, saveInputValue] = React.useState("");
+  const [inputValue, saveInputValue] = React.useState("");
 
   React.useEffect(() => {
     loadGoal();
   }, []);
 
   async function loadGoal() {
-    const response = await fetch('/api/sleep');
+    const response = await fetch('/api/sleep', {
+      credentials: 'include'
+    });
     const data = await response.json();
     setSleepGoal(data.goal);
   }
@@ -30,12 +32,13 @@ export function Goal() {
       return;
     }
 
-    if (goal < 0) {
-      alert("Sleep goal cannot be negative.");
+    if (goal <= 0) {
+      alert("Sleep goal cannot be zero or negative.");
       return;
     }
 
     const response = await fetch('/api/goal', {
+      credentials: 'include',
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ goal })
