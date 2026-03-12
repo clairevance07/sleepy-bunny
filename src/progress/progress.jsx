@@ -24,7 +24,7 @@ const formatDate = (dateStr) => {
 export function Progress() {
   React.useEffect(() => {
     async function loadProgress() {
-      const response = await fetch('/api/sleep');
+      const response = await fetch('/api/sleep', { credentials: "include" });
 
       if (response.ok) {
         const data = await response.json();
@@ -54,6 +54,7 @@ export function Progress() {
 
     const response = await fetch('/api/sleep', {
       method: 'POST',
+      credentials: "include",
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         date: selectedDate,
@@ -120,7 +121,7 @@ export function Progress() {
           <div className="modal-content">
             <h2 id="progress-header">{formatDate(selectedDate)}</h2>
             <button id="button" onClick={() => setSelectedDate(null)}>✖️</button>
-            <input className="form-control" id="start" type="number" placeholder="hours" min="0" max="24"value={hoursInput} onChange={(e) => setHoursInput(e.target.value)}></input>
+            <input className="form-control" id="start" type="number" placeholder="hours" min="0" max="24" value={hoursInput} onChange={(e) => setHoursInput(e.target.value)}></input>
             <button type="submit" className="btn" id="save" onClick={handleSave}>Save</button>
           </div>
         </div>

@@ -19,15 +19,8 @@ const users = {
     };
 
 const authUsers = {};
-
-const friendsPerUser = {
-  XYZ: []
-};
-
-const notificationsPerUser = {
-    XYZ: []
-}
-
+const friendsPerUser = {};
+const notificationsPerUser = {};
 const sleepLogsPerUser = {};
 const goalPerUser = {};
 

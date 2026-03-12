@@ -4,27 +4,26 @@ import { NavLink } from 'react-router-dom';
 
 export function Track() {
     
-    const [sleepHours, setSleepHours] = React.useState(() => {
-    const today = new Date().toLocaleDateString('en-CA'); 
-    const rawData = localStorage.getItem('sleepLog');
-    if (!rawData) return null;
-
-    const logs = JSON.parse(rawData);
-    return logs[today] !== undefined ? Number(logs[today]) : 0;
-});
+  const [sleepHours, setSleepHours] = React.useState(null);
 
   React.useEffect(() => {
-    const handleStorageChange = () => {
-      const logs = JSON.parse(localStorage.getItem('sleepLog')) || {};
-      const dates = Object.keys(logs);
-      if (dates.length > 0) {
-        const mostRecentDate = dates.sort().pop();
-        setSleepHours(Number(logs[mostRecentDate]));
-      }
-    };
+    async function loadSleep() {
+      const response = await fetch('/api/sleep');
 
-    window.addEventListener('storage', handleStorageChange);
-    return () => window.removeEventListener('storage', handleStorageChange);
+      if (response.ok) {
+        const data = await response.json();
+        const logs = data.logs || {};
+
+        const dates = Object.keys(logs);
+
+        if (dates.length > 0) {
+          const mostRecentDate = dates.sort().pop();
+          setSleepHours(Number(logs[mostRecentDate]));
+        }
+      }
+    }
+
+    loadSleep();
   }, []);
 
     const getBunnyImage = () => {
