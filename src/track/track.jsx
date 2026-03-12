@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 export function Track() {
     
   const [sleepHours, setSleepHours] = React.useState(null);
+  const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
     async function loadSleep() {
@@ -21,6 +22,7 @@ export function Track() {
           setSleepHours(Number(logs[mostRecentDate]));
         }
       }
+      setLoading(false);
     }
 
     loadSleep();
@@ -38,9 +40,11 @@ export function Track() {
 
   return (
     <div className="container-fluid text-center track-page">
-        <div className="sleep-stat">{sleepHours === null
-    ? "You haven't logged sleep yet!"
-    : `Last night, you slept ${sleepHours} hours!`}</div>
+        <div className="sleep-stat">{loading
+          ? "Loading sleep data..."
+          : sleepHours === null
+          ? "You haven't logged sleep yet!"
+          : `Last night, you slept ${sleepHours} hours!`}</div>
         <div className="page-content">
             <div className="bunny-container">
                 <img 
