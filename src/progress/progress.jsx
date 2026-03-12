@@ -42,7 +42,7 @@ export function Progress() {
   const [selectedDate, setSelectedDate] = React.useState(null);
   const [hoursInput, setHoursInput] = React.useState("");
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (!hoursInput) return;
 
     const hours = Number(hoursInput);
@@ -52,9 +52,19 @@ export function Progress() {
       return;
     }
 
-    const updatedLogs = {...sleepLogs, [selectedDate]: Number(hoursInput)};
-    setSleepLogs(updatedLogs);
-    localStorage.setItem('sleepLog', JSON.stringify(updatedLogs));
+    const response = await fetch('/api/sleep', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        date: selectedDate,
+        hours: hours
+      })
+    });
+
+    if (response.ok) {
+      const updatedLogs = { ...sleepLogs, [selectedDate]: hours };
+      setSleepLogs(updatedLogs);
+    }
 
     setSelectedDate(null);
     setHoursInput("");
@@ -96,7 +106,7 @@ export function Progress() {
               }
 
               return (
-                <div className={`card ${status}`} onClick={() => setSelectedDate(dateString)}>
+                <div key={dateString} className={`card ${status}`} onClick={() => setSelectedDate(dateString)}>
                   <div className="date">{formatDate(dateString)}</div>
                   <div className="hours">{hours !== undefined ? `${hours} hours` : "--"}</div>
                 </div>
