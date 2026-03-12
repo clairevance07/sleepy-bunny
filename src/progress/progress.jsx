@@ -22,12 +22,15 @@ const formatDate = (dateStr) => {
 };
 
 export function Progress() {
+  React.useEffect(() => {
+    async function loadProgress() {
+      const response = await fetch('/api/sleep')
+    }
+  })
 
   const daysList = getPastDays();
-  const goal = Number(localStorage.getItem('sleepGoal')) || 8;
-  const [sleepLogs, setSleepLogs] = React.useState(() => {
-    return JSON.parse(localStorage.getItem('sleepLog')) || {};
-  });
+  const [goal, setGoal] = React.useState(8);
+  const [sleepLogs, setSleepLogs] = React.useState({});
   const [selectedDate, setSelectedDate] = React.useState(null);
   const [hoursInput, setHoursInput] = React.useState("");
 

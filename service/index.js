@@ -186,6 +186,23 @@ app.post('/api/sleep', verifyAuth, (req, res) => {
   res.send({ success: true });
 })
 
+app.post('/api/goal', verifyAuth, (req, res) => {
+  const email = req.user.email;
+  const { goal } = req.body;
+
+  if (goal === undefined) {
+    return res.status(400).send({ msg: "Missing goal" });
+  }
+
+  if (goal < 0 || goal > 24) {
+    return res.status(400).send({ msg: "Goal must be between 0 and 24 hours" });
+  }
+
+  goalPerUser[email] = goal;
+
+  res.send({ success: true, goal });
+})
+
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
