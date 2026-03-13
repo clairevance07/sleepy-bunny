@@ -7,17 +7,6 @@ const app = express();
 
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
-const users = {
-        "XYZ": { name: "You", streak: 5, sleep: "7.0h" },
-        "ABC": { name: "Kaitlyn", streak: 5, sleep: "7.5h" },
-        "DEF": { name: "Hallie", streak: 12, sleep: "8.2h" },
-        "GHI": { name: "Maddie", streak: 3, sleep: "6.0h" },
-        "JKL": { name: "Katelyn", streak: 8, sleep: "7.0h" },
-        "MNO": { name: "Beyonce", streak: 100, sleep: "9.0h" },
-        "PQR": { name: "Chase", streak: 1, sleep: "5.5h" },
-        "STU": { name: "Mason", streak: 0, sleep: "7.8h" }
-    };
-
 const authUsers = {};
 const friendsPerUser = {};
 const notificationsPerUser = {};
@@ -96,22 +85,25 @@ app.get('/api/friends', verifyAuth, (req, res) => {
 
 app.post('/api/friends/add', verifyAuth, (req, res) => {
   const email = req.user.email;
-  const friendCode = req.body.friendCode.toUpperCase();
+  const friendEmail = req.body.email;
 
-  if (!users[friendCode]) return res.status(404).send({ msg: "Invalid friend code" });
+  if (!authUsers[friendEmail]) return res.status(404).send({ msg: "User not found" });
 
   if (!friendsPerUser[email]) friendsPerUser[email] = [];
 
-  if (friendsPerUser[email].some(f => f.code === friendCode)) {
+  if (friendsPerUser[email].some(f => f.email === friendEmail)) {
     return res.status(400).send({ msg: "Already friends" });
   }
 
-  const friendData = users[friendCode];
+  if (friendEmail === email) {
+    return res.status(400).send({ msg: "Cannot add yourself" });
+  }
+
   friendsPerUser[email].push({
-    code: friendCode,
-    name: friendData.name,
-    streak: friendData.streak,
-    sleep: friendData.sleep
+    email: friendEmail,
+    name: friendEmail.split('@')[0],
+    streak: 0,
+    sleep: "8h"
   });
 
   res.send({ success: true });
@@ -131,13 +123,13 @@ app.post('/api/notifications', verifyAuth, (req, res) => {
     res.send({ success: true, id });
 });
 
-app.delete('/api/friends/remove/:friendCode', verifyAuth, (req, res) => {
+app.delete('/api/friends/remove/:email', verifyAuth, (req, res) => {
   const email = req.user.email;
-  const friendCode = req.params.friendCode.toUpperCase();
+  const friendEmail = req.params.email;
 
   if (!friendsPerUser[email]) return res.status(404).send({ msg: "User not found" });
 
-  friendsPerUser[email] = friendsPerUser[email].filter(f => f.code !== friendCode);
+  friendsPerUser[email] = friendsPerUser[email].filter(f => f.email !== friendEmail);
 
   res.send({ success: true });
 });
@@ -198,7 +190,7 @@ app.post('/api/goal', verifyAuth, (req, res) => {
   res.send({ success: true, goal });
 })
 
-app.get('/user/me', verifyAuth, (req, res) => {
+app.get('/api/user/me', verifyAuth, (req, res) => {
   res.send({ userName: req.user.email });
 });
 

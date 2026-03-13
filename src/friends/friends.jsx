@@ -1,22 +1,20 @@
 import React from 'react';
 import './friends.css';
 
-const MY_FRIEND_CODE = "XYZ";
-
 export function Friends() {
 
     const [friendsList, setFriendsList] = React.useState([]);
-    const [friendCode, setFriendCode] = React.useState("");
+    const [friendEmail, setFriendEmail] = React.useState("");
     const [notifications, setNotifications] = React.useState([]);
 
-const removeFriend = async (code) => {
-    const friend = friendsList.find(f => f.code === code);
-    const friendName = friend ? friend.name : code;
+const removeFriend = async (email) => {
+    const friend = friendsList.find(f => f.email === email);
+    const friendName = friend ? friend.name : email;
 
-    const response = await fetch(`/api/friends/remove/${code}`, { method: 'DELETE' });
+    const response = await fetch(`/api/friends/remove/${email}`, { method: 'DELETE' });
 
     if (response.ok) {
-        setFriendsList(prev => prev.filter(f => f.code !== code));
+        setFriendsList(prev => prev.filter(f => f.email !== email));
 
         const id = Date.now();
         const text = `Friend ${friendName} removed.`;
@@ -89,16 +87,15 @@ const sendHighFive = async (name) => {
     }, [friendsList]);
 
     const handleAddFriends = async () => {
-        const upperCode = friendCode.toUpperCase();
 
         const response = await fetch(`/api/friends/add`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ friendCode: upperCode })
+            body: JSON.stringify({ email: friendEmail })
         });
 
         if (!response.ok) {
-            alert("Invalid Code or already added!");
+            alert("Invalid email or already added!");
             return;
         }
 
@@ -106,7 +103,7 @@ const sendHighFive = async (name) => {
         const data = await updated.json();
         setFriendsList(data);
 
-        setFriendCode("");
+        setFriendEmail("");
     };
 
     return (
@@ -129,10 +126,10 @@ const sendHighFive = async (name) => {
             <div className="friends-page">
                 <div className="friends-grid">
                     {friendsList.map((friend) => (
-                        <div className="friend-card" key={friend.code}>
+                        <div className="friend-card" key={friend.email}>
                             <button 
                                 className="btn remove-btn"
-                                onClick={() => removeFriend(friend.code)}
+                                onClick={() => removeFriend(friend.email)}
                                 title="Remove Friend">
                                 ✖️
                             </button>
@@ -152,11 +149,10 @@ const sendHighFive = async (name) => {
                         className="form-control" 
                         id="field" 
                         type="text" 
-                        placeholder="Insert friend code" 
-                        value={friendCode} 
-                        onChange={(e) => setFriendCode(e.target.value)} 
+                        placeholder="Enter friend's email" 
+                        value={friendEmail} 
+                        onChange={(e) => setFriendEmail(e.target.value)} 
                     />
-                    <div className="personal-code">Your friend code is: <strong>{MY_FRIEND_CODE}</strong></div>
                     <button onClick={handleAddFriends} type="button" className="btn send" id="add">Add friend</button>
                 </div>
             </div>
