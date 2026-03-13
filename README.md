@@ -93,12 +93,12 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Node.js/Express HTTP service** - I did not complete this part of the deliverable.
-- [ ] **Static middleware for frontend** - I did not complete this part of the deliverable.
-- [ ] **Calls to third party endpoints** - I did not complete this part of the deliverable.
-- [ ] **Backend service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Frontend calls service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Supports registration, login, logout, and restricted endpoint** - I did not complete this part of the deliverable.
+- [x] **Node.js/Express HTTP service** - I used Node.js and express to make a working backend. I have a server that listens for fetch requests from the frontend and express.json() to parse incoming data.
+- [x] **Static middleware for frontend** - I used the express.static('public') middleware so that the backend can can receive calls from the frontend files. 
+- [x] **Calls to third party endpoints** - My website makes fetch requests to Open-Meteo API to pull weather data for the Weather page. 
+- [x] **Backend service endpoints** - I have service endpoints for authentication, friend management, notifications, and sleep tracking. All goals, sleep logs, and friends are now stored in the backend as opposed to localStorage.
+- [x] **Frontend calls service endpoints** - Instead of storing things in localStorage, my frontend now makes fetch requests for user data. For example, it fetches the user's sleep goal and sleep logs from the backend. 
+- [x] **Supports registration, login, logout, and restricted endpoint** - My authentication system requires that users create an account if it's their first time visiting the site. If their email is already stored in the database, they cannot create a new account. Passwords are stored in a hashed format with BCrypt, and users are issued a secure cookie to access their account. My app also supports logout. 
 
 ## 🚀 DB deliverable
 
