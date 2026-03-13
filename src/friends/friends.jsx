@@ -5,25 +5,55 @@ const MY_FRIEND_CODE = "XYZ";
 
 export function Friends() {
 
-    const removeFriend = async (code) => {
-    const updatedList = friendsList.filter(friend => friend.code !== code);
-    setFriendsList(updatedList);
-
-    await fetch('/api/notifications', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text: "Friend removed." })
-    })
-    
-    const response = await fetch('/api/notifications');
-    const data  = await response.json();
-    setNotifications(data);
-};
-
     const [friendsList, setFriendsList] = React.useState([]);
     const [friendCode, setFriendCode] = React.useState("");
     const [notifications, setNotifications] = React.useState([]);
-    
+
+const removeFriend = async (code) => {
+    // BUG #2 FIX: Find name before deleting
+    const friend = friendsList.find(f => f.code === code);
+    const friendName = friend ? friend.name : code;
+
+    const response = await fetch(`/api/friends/remove/${code}`, { method: 'DELETE' });
+
+    if (response.ok) {
+        setFriendsList(prev => prev.filter(f => f.code !== code));
+
+        const id = Date.now();
+        const text = `Friend ${friendName} removed.`;
+        
+        fetch('/api/notifications', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text })
+        });
+
+        const newNote = { id, text };
+        setNotifications(prev => [newNote, ...prev].slice(0, 5));
+        setTimeout(() => {
+            setNotifications(prev => prev.filter(n => n.id !== id));
+        }, 4000);
+    }
+};
+
+const sendHighFive = async (name) => {
+    const id = Date.now();
+    const text = `You sent a high five to ${name}!`;
+
+    fetch('/api/notifications', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text })
+    });
+
+    const newNote = { id, text };
+    setNotifications(prev => [newNote, ...prev].slice(0, 5));
+
+    setTimeout(() => {
+        setNotifications(prev => prev.filter(n => n.id !== id));
+    }, 4000);
+};
+
     React.useEffect(() => {
         async function loadFriends() {
             const response = await fetch('/api/friends');
@@ -32,16 +62,6 @@ export function Friends() {
         }
 
         loadFriends();
-    }, []);
-
-    React.useEffect(() => {
-        async function loadNotifications() {
-            const response = await fetch('/api/notifications/XYZ');
-            const data = await response.json();
-            setNotifications(data);
-        }
-
-        loadNotifications();
     }, []);
 
     React.useEffect(() => {
@@ -90,20 +110,6 @@ export function Friends() {
         setFriendCode("");
     };
 
-    const sendHighFive = async (name) => {
-        const text = `You sent a high five to ${name}!`;
-        
-        await fetch('/api/notifications', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ text })
-        });
-
-        const response = await fetch('/api/notifications');
-        const data = await response.json();
-        setNotifications(data);
-    };
-
     return (
         <div className="friends-container">
             <div className="friends-sidebar">
@@ -123,8 +129,8 @@ export function Friends() {
 
             <div className="friends-page">
                 <div className="friends-grid">
-                    {friendsList.map((friend, index) => (
-                        <div className="friend-card" key={index}>
+                    {friendsList.map((friend) => (
+                        <div className="friend-card" key={friend.code}>
                             <button 
                                 className="btn remove-btn"
                                 onClick={() => removeFriend(friend.code)}
