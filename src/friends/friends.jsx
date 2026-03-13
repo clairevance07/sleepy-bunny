@@ -10,7 +10,6 @@ export function Friends() {
     const [notifications, setNotifications] = React.useState([]);
 
 const removeFriend = async (code) => {
-    // BUG #2 FIX: Find name before deleting
     const friend = friendsList.find(f => f.code === code);
     const friendName = friend ? friend.name : code;
 
