@@ -57,7 +57,7 @@ app.post('/api/auth/create', async (req, res) => {
     token: uuidv4()
   };
 
-  res.cookie('token', authUsers[email].token, { httpOnly: true});
+  res.cookie('token', authUsers[email].token, { httpOnly: true, sameSite: 'strict', path: '/'});
 
   res.send({ email });
 });
@@ -78,12 +78,12 @@ app.post('/api/auth/login', async (req, res) => {
 
   user.token = uuidv4();
 
-  res.cookie('token', user.token, { httpOnly: true });
+  res.cookie('token', user.token, { httpOnly: true, sameSite: 'strict', path: '/' });
 
   res.send({ email });
 });
 
-app.post('/api/auth/logout', (req, res) => {
+app.delete('/api/auth/logout', (req, res) => {
   res.clearCookie('token');
   res.send({ success: true });
 });
@@ -197,6 +197,10 @@ app.post('/api/goal', verifyAuth, (req, res) => {
 
   res.send({ success: true, goal });
 })
+
+app.get('/user/me', verifyAuth, (req, res) => {
+  res.send({ userName: req.user.email });
+});
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

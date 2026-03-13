@@ -11,9 +11,32 @@ import { Weather } from './weather/weather';
 import { AuthState } from './login/authState';
 
 function App() {
-    const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
-    const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
-    const [authState, setAuthState] = React.useState(currentAuthState);
+    const [userName, setUserName] = React.useState('');
+    const [authState, setAuthState] = React.useState(AuthState.Unknown);
+
+    React.useEffect(() => {
+        async function checkAuth() {
+            try {
+                const response = await fetch('/api/user/me');
+                if (response.ok) {
+                    const data = await response.json();
+                    setUserName(data.userName);
+                    setAuthState(AuthState.Authenticated);
+                }
+                else {
+                    setAuthState(AuthState.Unauthenticated);
+                }
+            }
+            catch (e) {
+                setAuthState(AuthState.Unauthenticated);
+            }
+        }
+        checkAuth();
+    }, []);
+
+    if (authState === AuthState.Unknown) {
+        return <div className="loading">Checking login status...</div>
+    }
 
   return ( <BrowserRouter>
     <div className="body">
