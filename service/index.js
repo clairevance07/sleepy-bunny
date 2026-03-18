@@ -91,23 +91,22 @@ app.delete('/api/friends/remove/:email', verifyAuth, async (req, res) => {
 });
 
 app.post('/api/notifications', verifyAuth, async (req, res) => {
-    const email = req.user.email;
     const { text } = req.body;
-
-    if (!notificationsPerUser[email]) notificationsPerUser[email] = [];
-
-    const id = Date.now();
-    notificationsPerUser[email].unshift({ id, text });
-
-    notificationsPerUser[email] = notificationsPerUser[email].slice(0, 10);
-
-    res.send({ success: true, id });
+    try {
+      await DB.addNotification(req.user.email, text);
+      res.send({ success: true });
+    } catch (err) {
+      res.status(500).send({ msg: "Failed to save notification" })
+    }
 });
 
-app.get('/api/notifications', verifyAuth, (req, res) => {
-  const email = req.user.email;
-  if (!notificationsPerUser[email]) notificationsPerUser[email] = [];
-  res.send(notificationsPerUser[email]);
+app.get('/api/notifications', verifyAuth, async (req, res) => {
+  try {
+    const notes = await DB.getNotifications(req.user.email);
+    res.send(notes);
+  } catch (err) {
+    res.status(500).send({ msg: "Failed to fetch notifications"});
+  }
 });
 
 app.get('/api/sleep', verifyAuth, async (req, res) => {

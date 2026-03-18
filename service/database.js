@@ -79,6 +79,23 @@ function removeFriend(userEmail, friendEmail) {
     return friendCollection.deleteOne({ userEmail, email: friendEmail });
 }
 
+async function addNotification(email, text) {
+    const notification = {
+        email: email,
+        text: text,
+        timestamp: new Date()
+    };
+    return notificationCollection.insertOne(notification);
+}
+
+function getNotifications(email) {
+    return notificationCollection
+        .find({ email: email })
+        .sort({ timestamp: -1 })
+        .limit(10)
+        .toArray();
+}
+
 module.exports = {
     getUser,
     getUserByToken,
@@ -89,5 +106,7 @@ module.exports = {
     updateUserGoal,
     getFriends,
     addFriend,
-    removeFriend
+    removeFriend,
+    addNotification,
+    getNotifications
 }
