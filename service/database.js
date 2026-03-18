@@ -45,7 +45,7 @@ async function getSleepData(email) {
 
     return {
         logs: logObject,
-        goal: user.goal || 8
+        goal: (user && user.goal) || 8
     };
 }
 

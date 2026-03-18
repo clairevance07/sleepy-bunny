@@ -2,20 +2,16 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const { v4: uuidv4 } = require('uuid');
+const DB = require('./database.js');
 
 const app = express();
-
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
-const authUsers = {};
-const friendsPerUser = {};
-const notificationsPerUser = {};
-const sleepLogsPerUser = {};
-const goalPerUser = {};
-
-const verifyAuth = (req, res, next) => {
+const verifyAuth = async (req, res, next) => {
   const token = req.cookies.token;
-  const user = Object.values(authUsers).find(u => u.token === token);
+  if (!token) return res.status(401).send({ msg: "Unauthorized" });
+  
+  const user = await DB.getUserByToken(token);
   if (!user) {
     return res.status(401).send({ msg: "Unauthorized" });
   }
@@ -34,20 +30,21 @@ app.post('/api/auth/create', async (req, res) => {
     return res.status(400).send({ msg: "Invalid email address" });
   }
 
-  if (authUsers[email]) {
+  if (await DB.getUser(email)) {
     return res.status(409).send({ msg: "User already exists" });
   }
 
   const passwordHash = await bcrypt.hash(password, 10);
+  const token = uuidv4();
 
-  authUsers[email] = {
+   await DB.addUser({
     email: email,
     password: passwordHash,
-    token: uuidv4()
-  };
+    token: token,
+    goal: 8
+  });
 
   res.cookie('token', authUsers[email].token, { httpOnly: true, sameSite: 'strict', path: '/'});
-
   res.send({ email });
 });
 
