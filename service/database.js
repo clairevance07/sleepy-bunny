@@ -65,13 +65,21 @@ function getFriends(email) {
     return friendCollection.find({ userEmail: email }).toArray();
 }
 
-function addFriend(userEmail, friendEmail) {
+function updateUserStreak(email, streak) {
+    return userCollection.updateOne({ email }, { $set: { streak: streak } });
+}
+
+async function addFriend(userEmail, friendEmail) {
+    const friendUser = await getUser(friendEmail);
+    const friendLogs = await logCollection.find({ email: friendEmail }).sort({ date: -1 }).limit(1).toArray();
+    const latestSleep = friendLogs.length > 0 ? `${friendLogs[0].hours}h` : "8h";
+
     return friendCollection.insertOne({
         userEmail,
         email: friendEmail,
         name: friendEmail.split('@')[0],
-        streak: 0,
-        sleep: "8h"
+        streak: (friendUser && friendUser.streak) || 0,
+        sleep: latestSleep
     });
 }
 
@@ -108,5 +116,6 @@ module.exports = {
     addFriend,
     removeFriend,
     addNotification,
-    getNotifications
+    getNotifications,
+    updateUserStreak
 }

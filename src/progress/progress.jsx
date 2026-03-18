@@ -44,12 +44,23 @@ export function Progress() {
 
   const handleSave = async () => {
     if (!hoursInput) return;
-
     const hours = Number(hoursInput);
 
     if (hours < 0 || hours > 24) {
       alert("Sleep hours must be between 0 and 24.");
       return;
+    }
+
+    const updatedLogs = { ...sleepLogs, [selectedDate]: hours };
+
+    let currentStreak = 0;
+    for (let date of daysList) {
+      const logHours = updatedLogs[date];
+      if (logHours !== undefined && logHours >= goal) {
+        currentStreak++;
+      } else {
+        break;
+      }
     }
 
     const response = await fetch('/api/sleep', {
@@ -58,7 +69,8 @@ export function Progress() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         date: selectedDate,
-        hours: hours
+        hours: hours,
+        streak: currentStreak
       })
     });
 

@@ -36,7 +36,8 @@ app.post('/api/auth/create', async (req, res) => {
     email: email,
     password: passwordHash,
     token: token,
-    goal: 8
+    goal: 8,
+    streak: 0
   });
 
   res.cookie('token', token, { httpOnly: true, sameSite: 'strict', path: '/'});
@@ -115,13 +116,18 @@ app.get('/api/sleep', verifyAuth, async (req, res) => {
 });
 
 app.post('/api/sleep', verifyAuth, async (req, res) => {
-  const { date, hours } = req.body;
+  const { date, hours, streak } = req.body;
 
   if (!date || hours === undefined || hours < 0 || hours > 24) {
     return res.status(400).send({ msg: "Invalid data" });
   }
 
   await DB.updateSleepLog(req.user.email, date, hours)
+
+  if (streak !== undefined) {
+      await DB.updateUserStreak(req.user.email, streak);
+    }
+
   res.send({ success: true });
 })
 
