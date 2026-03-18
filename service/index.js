@@ -3,7 +3,6 @@ const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const { v4: uuidv4 } = require('uuid');
 const DB = require('./database.js');
-const { resumeAndPrerender } = require('react-dom/static');
 
 const app = express();
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
@@ -13,9 +12,8 @@ const verifyAuth = async (req, res, next) => {
   if (!token) return res.status(401).send({ msg: "Unauthorized" });
   
   const user = await DB.getUserByToken(token);
-  if (!user) {
-    return res.status(401).send({ msg: "Unauthorized" });
-  }
+  if (!user) return res.status(401).send({ msg: "Unauthorized" });
+
   req.user = user;
   next();
 };
@@ -27,13 +25,9 @@ app.use(express.static('public'));
 app.post('/api/auth/create', async (req, res) => {
   const { email, password } = req.body;
 
-  if (!email || !email.includes('@')) {
-    return res.status(400).send({ msg: "Invalid email address" });
-  }
+  if (!email || !email.includes('@')) return res.status(400).send({ msg: "Invalid email address" });
 
-  if (await DB.getUser(email)) {
-    return res.status(409).send({ msg: "User already exists" });
-  }
+  if (await DB.getUser(email)) return res.status(409).send({ msg: "User already exists" });
 
   const passwordHash = await bcrypt.hash(password, 10);
   const token = uuidv4();
@@ -45,7 +39,7 @@ app.post('/api/auth/create', async (req, res) => {
     goal: 8
   });
 
-  res.cookie('token', authUsers[email].token, { httpOnly: true, sameSite: 'strict', path: '/'});
+  res.cookie('token', token, { httpOnly: true, sameSite: 'strict', path: '/'});
   res.send({ email });
 });
 
@@ -91,18 +85,12 @@ app.post('/api/friends/add', verifyAuth, async (req, res) => {
   res.send({ success: true });
 });
 
-app.delete('/api/friends/remove/:email', verifyAuth, (req, res) => {
-  const email = req.user.email;
-  const friendEmail = req.params.email;
-
-  if (!friendsPerUser[email]) return res.status(404).send({ msg: "User not found" });
-
-  friendsPerUser[email] = friendsPerUser[email].filter(f => f.email !== friendEmail);
-
-  res.send({ success: true });
+app.delete('/api/friends/remove/:email', verifyAuth, async (req, res) => {
+  await DB.removeFriend(req.user.email, req.params.email);
+  res.send({ success: true })
 });
 
-app.post('/api/notifications', verifyAuth, (req, res) => {
+app.post('/api/notifications', verifyAuth, async (req, res) => {
     const email = req.user.email;
     const { text } = req.body;
 
@@ -138,7 +126,7 @@ app.post('/api/sleep', verifyAuth, async (req, res) => {
   res.send({ success: true });
 })
 
-app.post('/api/goal', verifyAuth, async, (req, res) => {
+app.post('/api/goal', verifyAuth, async (req, res) => {
   const { goal } = req.body;
 
   if (goal === undefined || goal < 0 || goal > 24) {
