@@ -19,3 +19,19 @@ const notificationCollection = db.collection('notification');
     process.exit(1);
   }
 })();
+
+function getUser(email) {
+    return userCollection.findOne({ token: token });
+}
+
+function getUserByToken(token) {
+    return userCollection.findOne({ token: token });
+}
+
+function addUser(user) {
+    return userCollection.insertOne(user);
+}
+
+function updateToken(email, token) {
+    return userCollection.updateOne({ email }, { $set: { token } });
+}
