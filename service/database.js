@@ -60,3 +60,21 @@ function updateSleepLog(email, date, hours) {
 function updateUserGoal(email, goal) {
     return userCollection.updateOne({ email }, { $set: { goal } });
 }
+
+function getFriends(email) {
+    return friendCollection.find({ userEmail: email }).toArray();
+}
+
+function addFriend(userEmail, friendEmail) {
+    return friendCollection.insertOne({
+        userEmail,
+        email: friendEmail,
+        name: friendEmail.split('@')[0],
+        streak: 0,
+        sleep: "8h"
+    });
+}
+
+function removeFriend(userEmail, friendEmail) {
+    return friendCollection.deleteOne({ userEmail, email: friendEmail });
+}
