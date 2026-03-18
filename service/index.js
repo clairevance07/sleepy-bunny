@@ -50,22 +50,15 @@ app.post('/api/auth/create', async (req, res) => {
 
 app.post('/api/auth/login', async (req, res) => {
   const { email, password } = req.body;
+  const user = await DB.getUser(email);
 
-  const user = authUsers[email];
-  if (!user) {
-    return res.status(401).send({ msg: "Unknown user" });
+  if (!user || !(await bcrypt.compare(password, user.password))) {
+    return res.status(401).send({ msg: "Invalid email or password" });
   }
+  const token = uuidv4();
+  await DB.updateToken(email, token);
 
-  const valid = await bcrypt.compare(password, user.password);
-
-  if (!valid) {
-    return res.status(401).send({ msg: "Incorrect password" });
-  }
-
-  user.token = uuidv4();
-
-  res.cookie('token', user.token, { httpOnly: true, sameSite: 'strict', path: '/' });
-
+  res.cookie('token', token, { httpOnly: true, sameSite: 'strict', path: '/' });
   res.send({ email });
 });
 
@@ -74,35 +67,26 @@ app.delete('/api/auth/logout', (req, res) => {
   res.send({ success: true });
 });
 
-app.get('/api/friends', verifyAuth, (req, res) => {
-  const email = req.user.email;
-  if (!friendsPerUser[email]) friendsPerUser[email] = [];
-  res.send(friendsPerUser[email]);
+app.get('/api/friends', verifyAuth, async (req, res) => {
+  const friends = await DB.getFriends(req.user.email);
+  res.send(friends);
 });
 
-app.post('/api/friends/add', verifyAuth, (req, res) => {
+app.post('/api/friends/add', verifyAuth, async (req, res) => {
   const email = req.user.email;
   const friendEmail = req.body.email;
 
-  if (!authUsers[friendEmail]) return res.status(404).send({ msg: "User not found" });
+  if (friendEmail === email) return res.status(404).send({ msg: "User not found" });
 
-  if (!friendsPerUser[email]) friendsPerUser[email] = [];
+  const friendUser = await DB.getUser(friendEmail);
+  if (!friendUser) return res.status(404).send({ msg: "User not found" });
 
-  if (friendsPerUser[email].some(f => f.email === friendEmail)) {
+  const friends = await DB.getFriends(email);
+  if (friends.some(f => f.email === friendEmail)) {
     return res.status(400).send({ msg: "Already friends" });
   }
 
-  if (friendEmail === email) {
-    return res.status(400).send({ msg: "Cannot add yourself" });
-  }
-
-  friendsPerUser[email].push({
-    email: friendEmail,
-    name: friendEmail.split('@')[0],
-    streak: 0,
-    sleep: "8h"
-  });
-
+  await DB.addFriend(email, friendEmail);
   res.send({ success: true });
 });
 
