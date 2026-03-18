@@ -104,8 +104,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Stores data in MongoDB** - I did not complete this part of the deliverable.
-- [ ] **Stores credentials in MongoDB** - I did not complete this part of the deliverable.
+- [x] **Stores data in MongoDB** - All user data is stored in MongoDB, including the user, their sleep logs (how much they slept and the corresponding date), their sleep from the most recent night, and their streak. Also stores connections between users. See database.js
+- [x] **Stores credentials in MongoDB** - Usernames and passwords are stored in MongoDB. See database.js
 
 ## 🚀 WebSocket deliverable
 

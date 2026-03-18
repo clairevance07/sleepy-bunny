@@ -75,7 +75,6 @@ export function Progress() {
     });
 
     if (response.ok) {
-      const updatedLogs = { ...sleepLogs, [selectedDate]: hours };
       setSleepLogs(updatedLogs);
     }
 
