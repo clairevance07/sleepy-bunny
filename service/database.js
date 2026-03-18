@@ -78,3 +78,16 @@ function addFriend(userEmail, friendEmail) {
 function removeFriend(userEmail, friendEmail) {
     return friendCollection.deleteOne({ userEmail, email: friendEmail });
 }
+
+module.exports = {
+    getUser,
+    getUserByToken,
+    addUser,
+    updateToken,
+    getSleepData,
+    updateSleepLog,
+    updateUserGoal,
+    getFriends,
+    addFriend,
+    removeFriend
+}
