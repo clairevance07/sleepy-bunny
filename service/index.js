@@ -3,6 +3,7 @@ const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const { v4: uuidv4 } = require('uuid');
 const DB = require('./database.js');
+const { resumeAndPrerender } = require('react-dom/static');
 
 const app = express();
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
@@ -90,6 +91,17 @@ app.post('/api/friends/add', verifyAuth, async (req, res) => {
   res.send({ success: true });
 });
 
+app.delete('/api/friends/remove/:email', verifyAuth, (req, res) => {
+  const email = req.user.email;
+  const friendEmail = req.params.email;
+
+  if (!friendsPerUser[email]) return res.status(404).send({ msg: "User not found" });
+
+  friendsPerUser[email] = friendsPerUser[email].filter(f => f.email !== friendEmail);
+
+  res.send({ success: true });
+});
+
 app.post('/api/notifications', verifyAuth, (req, res) => {
     const email = req.user.email;
     const { text } = req.body;
@@ -104,70 +116,36 @@ app.post('/api/notifications', verifyAuth, (req, res) => {
     res.send({ success: true, id });
 });
 
-app.delete('/api/friends/remove/:email', verifyAuth, (req, res) => {
-  const email = req.user.email;
-  const friendEmail = req.params.email;
-
-  if (!friendsPerUser[email]) return res.status(404).send({ msg: "User not found" });
-
-  friendsPerUser[email] = friendsPerUser[email].filter(f => f.email !== friendEmail);
-
-  res.send({ success: true });
-});
-
 app.get('/api/notifications', verifyAuth, (req, res) => {
   const email = req.user.email;
   if (!notificationsPerUser[email]) notificationsPerUser[email] = [];
   res.send(notificationsPerUser[email]);
 });
 
-app.get('/api/sleep', verifyAuth, (req, res) => {
-  const email = req.user.email;
-
-  if(!sleepLogsPerUser[email]) sleepLogsPerUser[email] = {};
-  if (goalPerUser[email] === undefined) {
-    goalPerUser[email] = 8;
-  }
-
-  res.send({
-    logs: sleepLogsPerUser[email],
-    goal: goalPerUser[email]
-  });
+app.get('/api/sleep', verifyAuth, async (req, res) => {
+  const data = await DB.getSleepData(req.user.email);
+  res.send(data);
 });
 
-app.post('/api/sleep', verifyAuth, (req, res) => {
-  const email = req.user.email;
+app.post('/api/sleep', verifyAuth, async (req, res) => {
   const { date, hours } = req.body;
 
-  if (!date || hours === undefined) {
-    return res.status(400).send({ msg: "Missing data" });
+  if (!date || hours === undefined || hours < 0 || hours > 24) {
+    return res.status(400).send({ msg: "Invalid data" });
   }
 
-  if (hours < 0 || hours > 24) {
-    return res.status(400).send({ msg: "Hours must be between 0 and 24" });
-  }
-
-  if (!sleepLogsPerUser[email]) sleepLogsPerUser[email] = {};
-
-  sleepLogsPerUser[email][date] = hours;
-
+  await DB.updateSleepLog(req.user.email, date, hours)
   res.send({ success: true });
 })
 
-app.post('/api/goal', verifyAuth, (req, res) => {
-  const email = req.user.email;
+app.post('/api/goal', verifyAuth, async, (req, res) => {
   const { goal } = req.body;
 
-  if (goal === undefined) {
-    return res.status(400).send({ msg: "Missing goal" });
+  if (goal === undefined || goal < 0 || goal > 24) {
+    return res.status(400).send({ msg: "Invalid goal" });
   }
 
-  if (goal < 0 || goal > 24) {
-    return res.status(400).send({ msg: "Goal must be between 0 and 24 hours" });
-  }
-
-  goalPerUser[email] = goal;
-
+  await DB.updateUserGoal(req.user.email, goal);
   res.send({ success: true, goal });
 })
 
