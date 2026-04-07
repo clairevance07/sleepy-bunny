@@ -21,6 +21,16 @@ export function Friends() {
         return () => socket.close();
     }, []);
 
+    const displayNotification = (text) => {
+        const id = Date.now();
+        const newNote = { id, text };
+        setNotifications(prev => [newNote, ...prev].slice(0, 5));
+
+        setTimeout(() => {
+            setNotifications(prev => prev.filter(n => n.id !== id));
+        }, 4000);
+    }
+
     const removeFriend = async (email) => {
     const friend = friendsList.find(f => f.email === email);
     const friendName = friend ? friend.name : email;
