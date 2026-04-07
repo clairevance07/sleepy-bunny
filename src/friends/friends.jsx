@@ -7,7 +7,21 @@ export function Friends() {
     const [friendEmail, setFriendEmail] = React.useState("");
     const [notifications, setNotifications] = React.useState([]);
 
-const removeFriend = async (email) => {
+    const socketRef = React.useRef(null);
+
+    React.useEffect(() => {
+        const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+        const socket = new WebSocket(`${protocol};//${window.location.host}/ws`);
+        socketRef.current = socket;
+
+        socket.onmessage = async (event) => {
+            const msg = JSON.parse(await event.data);
+            displayNotification(msg.text);
+        };
+        return () => socket.close();
+    }, []);
+
+    const removeFriend = async (email) => {
     const friend = friendsList.find(f => f.email === email);
     const friendName = friend ? friend.name : email;
 
