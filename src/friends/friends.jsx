@@ -10,15 +10,33 @@ export function Friends() {
     const socketRef = React.useRef(null);
 
     React.useEffect(() => {
+        async function loadFriends() {
+            const response = await fetch('/api/friends');
+            const data = await response.json();
+            setFriendsList(data);
+        }
+        loadFriends();
+
         const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
-        const socket = new WebSocket(`${protocol};//${window.location.host}/ws`);
+        const socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
         socketRef.current = socket;
 
         socket.onmessage = async (event) => {
-            const msg = JSON.parse(await event.data);
-            displayNotification(msg.text);
+            try {
+                const text = typeof event.data === 'string' ? event.data : await event.data.text();
+                if (text.startsWith('{')) {
+                    const msg = JSON.parse(text);
+                    displayNotification(msg.text);
+                } else {
+                    displayNotification(text);
+                }
+            } catch (err) {
+                console.error("Error parsing message:", err);
+            }
         };
-        return () => socket.close();
+        return () => {
+            if (socketRef.current) socketRef.current.close();
+        };
     }, []);
 
     const displayNotification = (text) => {
@@ -32,30 +50,30 @@ export function Friends() {
     }
 
     const removeFriend = async (email) => {
-    const friend = friendsList.find(f => f.email === email);
-    const friendName = friend ? friend.name : email;
+        const friend = friendsList.find(f => f.email === email);
+        const friendName = friend ? friend.name : email;
 
-    const response = await fetch(`/api/friends/remove/${email}`, { method: 'DELETE' });
+        const response = await fetch(`/api/friends/remove/${email}`, { method: 'DELETE' });
 
-    if (response.ok) {
-        setFriendsList(prev => prev.filter(f => f.email !== email));
+        if (response.ok) {
+            setFriendsList(prev => prev.filter(f => f.email !== email));
 
-        const id = Date.now();
-        const text = `Friend ${friendName} removed.`;
-        
-        fetch('/api/notifications', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ text })
-        });
+            const id = Date.now();
+            const text = `Friend ${friendName} removed.`;
+            
+            fetch('/api/notifications', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ text })
+            });
 
-        const newNote = { id, text };
-        setNotifications(prev => [newNote, ...prev].slice(0, 5));
-        setTimeout(() => {
-            setNotifications(prev => prev.filter(n => n.id !== id));
-        }, 4000);
-    }
-};
+            const newNote = { id, text };
+            setNotifications(prev => [newNote, ...prev].slice(0, 5));
+            setTimeout(() => {
+                setNotifications(prev => prev.filter(n => n.id !== id));
+            }, 4000);
+        }
+    };
 
 const sendHighFive = async (name) => {
     const text = `🙌 ${name} got a high five!`;
