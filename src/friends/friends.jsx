@@ -58,57 +58,20 @@ export function Friends() {
 };
 
 const sendHighFive = async (name) => {
-    const id = Date.now();
-    const text = `You sent a high five to ${name}!`;
+    const text = `🙌 ${name} got a high five!`;
+
+    if (socketRef.current?.readyState === WebSocket.OPEN) {
+        socketRef.current.send(JSON.stringify({ text }));
+    }
 
     fetch('/api/notifications', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text })
+        body: JSON.stringify({ text: `You sent a high five to ${name}!` })
     });
 
-    const newNote = { id, text };
-    setNotifications(prev => [newNote, ...prev].slice(0, 5));
-
-    setTimeout(() => {
-        setNotifications(prev => prev.filter(n => n.id !== id));
-    }, 4000);
+    displayNotification(`You sent a high five to ${name}!`)
 };
-
-    React.useEffect(() => {
-        async function loadFriends() {
-            const response = await fetch('/api/friends');
-            const data = await response.json();
-            setFriendsList(data);
-        }
-
-        loadFriends();
-    }, []);
-
-    React.useEffect(() => {
-        if (friendsList.length === 0) return;
-
-        const messages = [
-            "sent you a high five! 🙌",
-            "is active now! 🐰",
-            "increased their streak! 🔥",
-        ];
-
-        const interval = setInterval(() => {
-            const randomFriend = friendsList[Math.floor(Math.random() * friendsList.length)];
-            const randomMsg = messages[Math.floor(Math.random() * messages.length)];
-            const id = Date.now();
-            const newNote = { id, text: `${randomFriend.name} ${randomMsg}` };
-
-            setNotifications(prev => [newNote, ...prev].slice(0, 5));
-
-            setTimeout(() => {
-                setNotifications(prev => prev.filter(n => n.id !== id));
-            }, 4000);
-        }, 8000);
-
-        return () => clearInterval(interval);
-    }, [friendsList]);
 
     const handleAddFriends = async () => {
 
