@@ -21,7 +21,7 @@ const formatDate = (dateStr) => {
   });
 };
 
-export function Progress() {
+export function Progress({ userName }) {
   React.useEffect(() => {
     async function loadProgress() {
       const response = await fetch('/api/sleep', { credentials: "include" });
@@ -76,6 +76,18 @@ export function Progress() {
 
     if (response.ok) {
       setSleepLogs(updatedLogs);
+
+      const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+      const socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+
+      socket.onopen = () => {
+        const cleanedName = userName ? userName.split('@')[0] : "A friend";
+        const payload = {
+          text: `🔥 ${cleanedName} just hit a ${currentStreak} day streak!`
+        };
+        socket.send(JSON.stringify(payload));
+        setTimeout(() => socket.close(), 1000);
+      }
     }
 
     setSelectedDate(null);

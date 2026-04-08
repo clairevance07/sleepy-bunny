@@ -75,7 +75,7 @@ function App() {
         <Route path='/track' element={<Track />} />
         <Route path='/friends' element={<Friends userName={userName} />} />
         <Route path='/weather' element={<Weather />} />
-        <Route path='/progress' element={<Progress />} />
+        <Route path='/progress' element={<Progress userName={userName} />} />
         <Route path='/goal' element={<Goal />} />
         <Route path='*' element={<NotFound />} />
     </Routes>
