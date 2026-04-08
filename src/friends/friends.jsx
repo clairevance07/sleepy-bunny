@@ -146,10 +146,6 @@ const sendHighFive = async (name) => {
                             </button>
                             <div className="friend-bunny">🐰</div>
                             <div className="friend-name">{friend.name}</div>
-                            <div className="friend-stats">
-                                <div className="streak">🔥 {friend.streak || 0} days</div>
-                                <div className="sleep">💤 {friend.sleep || "7.0h"}</div>
-                            </div>
                             <button type="button" className="btn send" onClick={() => sendHighFive(friend.name)}>🙌</button>
                         </div>
                     ))}
