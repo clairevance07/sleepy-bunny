@@ -73,7 +73,7 @@ function App() {
                   setUserName(userName);
                 }}/>} exact />
         <Route path='/track' element={<Track />} />
-        <Route path='/friends' element={<Friends />} />
+        <Route path='/friends' element={<Friends userName={userName} />} />
         <Route path='/weather' element={<Weather />} />
         <Route path='/progress' element={<Progress />} />
         <Route path='/goal' element={<Goal />} />

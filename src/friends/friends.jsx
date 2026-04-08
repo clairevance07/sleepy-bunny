@@ -1,7 +1,7 @@
 import React from 'react';
 import './friends.css';
 
-export function Friends() {
+export function Friends({ userName }) {
 
     const [friendsList, setFriendsList] = React.useState([]);
     const [friendEmail, setFriendEmail] = React.useState("");
@@ -23,15 +23,16 @@ export function Friends() {
 
         socket.onmessage = async (event) => {
             try {
-                const text = typeof event.data === 'string' ? event.data : await event.data.text();
-                if (text.startsWith('{')) {
-                    const msg = JSON.parse(text);
-                    displayNotification(msg.text);
+                const data = typeof event.data === 'string' ? event.data : await event.data.text();
+                const msg = JSON.parse(data);
+
+                if (msg.from && msg.text) {
+                    displayNotification(`${msg.from} ${msg.text}`);
                 } else {
-                    displayNotification(text);
+                    displayNotification(msg.text || data);
                 }
             } catch (err) {
-                console.error("Error parsing message:", err);
+                displayNotification(event.data);
             }
         };
         return () => {
@@ -76,10 +77,15 @@ export function Friends() {
     };
 
 const sendHighFive = async (name) => {
-    const text = `🙌 ${name} got a high five!`;
+    const senderName = userName ? userName.split('@')[0] : "A friend";
+
+    const msg = {
+        from: `🙌 ${senderName}`,
+        text: "sent you a high five!"
+    };
 
     if (socketRef.current?.readyState === WebSocket.OPEN) {
-        socketRef.current.send(JSON.stringify({ text }));
+        socketRef.current.send(JSON.stringify(msg));
     }
 
     fetch('/api/notifications', {
