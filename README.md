@@ -111,8 +111,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Backend listens for WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Frontend makes WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Data sent over WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **WebSocket data displayed** - I did not complete this part of the deliverable.
-- [ ] **Application is fully functional** - I did not complete this part of the deliverable.
+- [x] **Backend listens for WebSocket connection** - I've implemented a Websocket server in my peerProxy.js file.
+- [x] **Frontend makes WebSocket connection** - friends.jsx now establishes a connection to the backend.
+- [x] **Data sent over WebSocket connection** - When a user updates their sleep for the day or sends a high five, a notification is sent to their friends. 
+- [x] **WebSocket data displayed** - The notifications show up in the activities sidebar. 
+- [x] **Application is fully functional** - All notifications display in real time! I'm actually pretty proud of this :) 
