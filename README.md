@@ -1,118 +1,20 @@
 # Sleepy Bunny 🐰
+> An adorable sleep log app where your sleep duration is reflected by the state of your bunny.
 
-[My Notes](notes.md)
+### Overview
 
-## 🚀 Specification Deliverable
+With sleep deprivation being such an acute problem among teens and adults, **Sleepy Bunny** instantly brings awareness to nightly habits. The app allows users to **set a sleep goal, log hours, and share progress** with friends while their virtual pet mirrors their data. For example, if a user only logs four hours of sleep, their bunny will be nearly asleep. This fluffy friend is perfect to help users get their sleep schedule back on track.
 
-Sleepy Bunny is an adorable sleep log app where you improve the mood and energy of your virtual pet rabbit by achieving your sleep goals. 
+### Key Features
 
-For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
+- **Visual Reminders:** After signing in, the user is greeted by an adorable bunny who reflects the user's energy levels. He'll be exhausted if they didn't sleep well the previous night and energized if they hit their goals.
+- **Goal Updates:** Hours of sleep needed vary from person to person, so each user can quickly update their sleep goal according to their needs.
+- **Progress monitoring:** Featuring a calendar that displays the last 30 days, users can see at a glance how often they hit their sleep goals, with days they hit their goal shaded green and days they didn't shaded yellow. Days that haven't been logged yet are shaded gray and can be updated by clicking on them and typing in the number of hours slept.
+- **Friends:** Users have the option to add friends via email and send them high fives.
+- **Weather:** Users can see the current weekly forecast, which is updated regularly with API calls. 
 
-- [x] Proper use of Markdown
-- [x] A concise and compelling elevator pitch
-- [x] Description of key features
-- [x] Description of how you will use each technology
-- [x] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
+### Tech Stack
 
-### Elevator pitch
-
-If there's one thing teenagers and young adults frequently complain about, it's how exhausted they are. However, they usually don't take time to fix their sleep schedules. Sleepy Bunny instantly brings awareness to how much sleep you're getting. Not only can you set a sleep goal, log your hours, and share your progress with friends, but your bunny mirrors the effects of your sleep duration; if you slept four hours last night, you can bet your bunny will be nearly falling asleep. This fluffy friend is exactly what you need to get your sleep schedule back on track.
-
-### Design
-
-![Design image 1](overview1.jpg)
-![Design image 2](overview2.jpg)
-
-The app will consist of three main parts: the login, track, and friends pages. The login page is where a user can create an account or log in to an existing account so that their data is saved. The tracking page is the main page of the application, which includes the user's bunny, who will be animated based on mood, and two popup windows: goal and progress. The goal popup will allow the user to see and edit their ideal sleep window and how many hours of sleep they want to get per night. The progress window will show a calendar with the days that the user hit their sleep goal shaded in. On the friends page, the user can see the progress of the friends they've added and send praise, and they can also add new friends with the friend's username.
-
-### Key features
-
-- An adorable pet rabbit who greets you immediately after you sign in. This virtual pet reflects your mood based on your sleep schedule; he'll be exhausted if you didn't sleep well and energetic if you hit your goals.
-- Progress monitoring. It's easy to see how consistent you've been at a glance through the shaded calendar feature.
-- Friends! Staying on track is always easier with friends, and Sleepy Bunny makes it easy for you to check in on your friends and send them encouraging messages.
-
-### Technologies
-
-I am going to use the required technologies in the following ways.
-
-- **HTML** - Login and register controls, tracking page, goals and progress pop-ups and controls, friends page, friends' progress details, adding a friend controls.
-- **CSS** - Pastel color scheme, highlighting when hovering over buttons, shading / animation with popups and friend celebrations.
-- **React** - Routing between tabs and popups, updating bunny status and progress calendar based on sleep data logged.
-- **Service** - Store user progress and goals, login and logout details. Third party call to generate the weather of the week. 
-- **DB/Login** - Stores user progress and goals.
-- **WebSocket** - Share user's streak on a leaderboard. 
-
-## 🚀 AWS deliverable
-
-For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
-
-- [X] **Server deployed and accessible with custom domain name** - [My server link](https://startup.sleepybunny.click/).
-
-## 🚀 HTML deliverable
-
-For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
-
-- [x] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
-- [x] **HTML pages** - I created HTML pages for all of the different tabs of my app: Login (index), weather, track, goal, leaderboard, and progress. 
-- [x] **Proper HTML element usage** - I used BODY, NAV, MAIN, HEADER, and FOOTER tags, as well as tables, div, paragraph, a tags, and span. 
-- [x] **Links** - All pages contain a nav bar with links to the login, track, weather, and leaderboard pages. Track page has additional links to the progress and goal pages which have links that go back to the track page. 
-- [x] **Text** - I added text on each page, including headers, what the bunny will say based on how well you sleep, progress chart placeholder, weather chart placeholder, headers and descriptors. 
-- [x] **3rd party API placeholder** - This appears on my weather page where the app will call to a weather API.
-- [x] **Images** - I included a logo image in the browser tab, as well as a placeholder image for the bunny mascot on the track page and the weather banner on the weather page. 
-- [x] **Login placeholder** - I have a login screen with a username and password field, and the program greets the user by username on the track page. 
-- [x] **DB data placeholder** - I have a page for both the user's progress/streak, as well as a page for the user's goal. 
-- [x] **WebSocket placeholder** - There is a leaderboard tab that will show which users have the highest streak.
-
-## 🚀 CSS deliverable
-
-For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
-
-- [x] **Visually appealing colors and layout. No overflowing elements.** - All of my elements fit within the page. I have a visually appealing color pallette with shades of purple and a mint green accent.
-- [x] **Use of a CSS framework** - I used Bootstrap for button and field elements.
-- [x] **All visual elements styled using CSS** - Everything on my page is styled with CSS, including my bunny avatars. All fonts, sizes, and colors are styled with CSS.
-- [x] **Responsive to window resizing using flexbox and/or grid display** - I used both flexbox and grid display. Grid display for my streak calendar and weather, and flexbox for just about every other element.
-- [x] **Use of a imported font** - I used "Copperplate", "Copperplate Gothic Light", serif for my logo font in the top left corner. All other text is "Inter", sans-serif.
-- [x] **Use of different types of selectors including element, class, ID, and pseudo selectors** - I used many different types of selectors. I set overall rules for my elements and then used class and ID tags to specify things. I also used pseudo selectors to enable hover features. 
-
-## 🚀 React part 1: Routing deliverable
-
-For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
-
-- [x] **Bundled using Vite** - I downloaded Vite and used it to npm run dev while developing my webpage.
-- [x] **Components** - I have components for my login, track, weather, and friends page, as well as my progress and goal pages.
-- [x] **Router** - All buttons in the nav bar can be clicked to visit new react pages. Login and create buttons link to track page, and progress and goal pages can be clicked from track page and their "x" buttons link back to track. 
-
-## 🚀 React part 2: Reactivity deliverable
-
-For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
-
-- [x] **All functionality implemented or mocked out** - I've mocked out the login, progress, goal, and friend functionality. Login is saved to localStorage, along with the goal, current progress, and friend codes. Current useable friend codes are 'abc', 'def', 'ghi', 'jkl', 'mno', 'pqr', and 'stu'. 
-- [x] **Hooks** - I use hooks on each page for updating notifications, display, etc. One example is using useEffect to pull the latest data from localStorage and useState to change the bunny illustration on the track page based on this data.
-
-## 🚀 Service deliverable
-
-For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
-
-- [x] **Node.js/Express HTTP service** - I used Node.js and express to make a working backend. I have a server that listens for fetch requests from the frontend and express.json() to parse incoming data.
-- [x] **Static middleware for frontend** - I used the express.static('public') middleware so that the backend can can receive calls from the frontend files. 
-- [x] **Calls to third party endpoints** - My website makes fetch requests to Open-Meteo API to pull weather data for the Weather page. 
-- [x] **Backend service endpoints** - I have service endpoints for authentication, friend management, notifications, and sleep tracking. All goals, sleep logs, and friends are now stored in the backend as opposed to localStorage.
-- [x] **Frontend calls service endpoints** - Instead of storing things in localStorage, my frontend now makes fetch requests for user data. For example, it fetches the user's sleep goal and sleep logs from the backend. 
-- [x] **Supports registration, login, logout, and restricted endpoint** - My authentication system requires that users create an account if it's their first time visiting the site. If their email is already stored in the database, they cannot create a new account. Passwords are stored in a hashed format with BCrypt, and users are issued a secure cookie to access their account. My app also supports logout. 
-
-## 🚀 DB deliverable
-
-For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
-
-- [x] **Stores data in MongoDB** - All user data is stored in MongoDB, including the user, their sleep logs (how much they slept and the corresponding date), their sleep from the most recent night, and their streak. Also stores connections between users. See database.js
-- [x] **Stores credentials in MongoDB** - Usernames and passwords are stored in MongoDB. See database.js
-
-## 🚀 WebSocket deliverable
-
-For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
-
-- [x] **Backend listens for WebSocket connection** - I've implemented a Websocket server in my peerProxy.js file.
-- [x] **Frontend makes WebSocket connection** - friends.jsx now establishes a connection to the backend.
-- [x] **Data sent over WebSocket connection** - When a user updates their sleep for the day or sends a high five, a notification is sent to their friends. 
-- [x] **WebSocket data displayed** - The notifications show up in the activities sidebar. 
-- [x] **Application is fully functional** - All notifications display in real time! I'm actually pretty proud of this :) 
+- **Frontend:** `React`, `HTML`, `CSS`
+- **Backend:** `Node.js`, `Express`, `WebSocket`
+- **Database & Security:** `MongoDB`, `BCrypt`, `HTTP-Only Cookies`
