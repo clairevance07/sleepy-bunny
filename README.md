@@ -1,5 +1,5 @@
 # Sleepy Bunny 🐰
-> An adorable sleep log app where your sleep duration is reflected by the state of your bunny.
+> An adorable sleep log app where the user's sleep duration is reflected by the state of their virtual bunny.
 
 ### Overview
 
